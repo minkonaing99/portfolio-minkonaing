@@ -1,5 +1,37 @@
 [
     {
+        "project_title": "MerxyLab - Online Learning Platform",
+        "description": "Authentication, Video Processing, Image Processing, Quiz System, Anti-cheating exam ",
+        "photo_dir": "project_images/merxy_lab(1).png",
+        "alt": "Online Learning Platform",
+        "github_repo": "https://github.com/minkonaing99/merxylab.git",
+        "showcase": [
+            "merxy_lab(1).png",
+            "merxy_lab(2).png",
+            "merxy_lab(3).png",
+            "merxy_lab(4).png",
+            "merxy_lab(5).png",
+            "merxy_lab(6).png",
+            "merxy_lab(7).png",
+            "merxy_lab(8).png",
+            "merxy_lab(9).png",
+            "merxy_lab(10).png",
+            "merxy_lab(11).png",
+            "merxy_lab(12).png"
+        ],
+        "technologies": [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Django",
+            "JWT authentication",
+            "FFMPEG processing",
+            "Celery",
+            "Redis",
+            "MySQL"
+        ]
+    },
+    {
         "project_title": "Student Management System",
         "description": "Authentication, profile and database management, blogging.",
         "photo_dir": "project_images/well_being_1.png",
