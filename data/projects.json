@@ -1,5 +1,28 @@
 [
     {
+        "project_title": "Sales Management System",
+        "description": "Full-stack system to track, analyze, and visualize sales performance using PHP, JS, and Aurora SQL. Integrated Gemini AI for automated sales commentary and deployed Telegram bot for sales input, reducing manual reporting by 60%.",
+        "photo_dir": "project_images/digimium_newdesign1.png",
+        "alt": "sales management ai insights",
+        "showcase": [
+            "digimium_newdesign1.png",
+            "digimium_newdesign2.png",
+            "digimium_newdesign3.png",
+            "digimium_newdesign4.png",
+            "digimium_newdesign5.png"
+        ],
+        "technologies": [
+            "Python",
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "PHP",
+            "MySQL",
+            "AWS EC2",
+            "Amazon RDS"
+        ]
+    },
+    {
         "project_title": "MerxyLab - Online Learning Platform",
         "description": "Authentication, Video Processing, Image Processing, Quiz System, Anti-cheating exam ",
         "photo_dir": "project_images/merxy_lab(1).png",
