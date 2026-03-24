@@ -564,7 +564,7 @@ body {
 }
 
 .feature-item .stat-group h3 {
-    font-size: 2.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 2.5rem);
     font-weight: 800;
     margin-bottom: 0;
     color: var(--text-color);
@@ -646,7 +646,7 @@ body {
 }
 
 .cta-item h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
     font-weight: 800;
     margin-bottom: 0.5rem;
     color: var(--text-color);
@@ -781,18 +781,38 @@ body {
         gap: 1.5rem;
     }
 
-    .feature-item .stat-group h3 {
-        font-size: 2.2rem;
-    }
-
-    .cta-item h3 {
-        font-size: 1.4rem;
-    }
 }
 
 @media (max-width: 830px) {
     .cta-button {
         display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .bento-row {
+        gap: 1rem;
+    }
+
+    .half-grid {
+        height: 180px;
+    }
+
+    .feature-item .stats-container {
+        gap: 0.5rem;
+    }
+
+    .feature-item .stat-group {
+        padding: 0.8rem 0.5rem;
+    }
+
+    .feature-item .stat-group p {
+        font-size: 0.75rem;
+        letter-spacing: 0;
+    }
+
+    .cta-item p {
+        font-size: 0.8rem;
     }
 }
 
@@ -1460,6 +1480,7 @@ body.loaded {
     font-weight: 600;
     color: var(--text-color);
 }
+
 
 .about-actions {
     display: flex;
@@ -2527,6 +2548,17 @@ body.loaded {
     transform: scaleX(1);
 }
 
+.platform-card.primary {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(15, 20, 25, 0.15));
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.12);
+}
+
+.platform-card.primary:hover {
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25);
+    border-color: rgba(99, 102, 241, 0.5);
+}
+
 .platform-icon {
     width: 50px;
     height: 50px;
@@ -3308,8 +3340,8 @@ img[loading="lazy"].loaded {
 .certificates-track {
     display: flex;
     gap: 2rem;
-    animation: scroll-left 40s linear infinite;
     width: max-content;
+    will-change: transform;
 }
 
 @keyframes scroll-left {
@@ -3386,10 +3418,7 @@ img[loading="lazy"].loaded {
 }
 
 
-/* Pause animation on hover */
-.certificates-scroll-container:hover .certificates-track {
-    animation-play-state: paused;
-}
+/* Smooth slowdown handled by JS */
 
 @media (max-width: 768px) {
     .certificates-scroll-container {
@@ -3406,9 +3435,6 @@ img[loading="lazy"].loaded {
         font-size: 1.2rem;
     }
 
-    .certificates-track {
-        animation-duration: 30s;
-    }
 }
 
 @media (max-width: 480px) {
@@ -3428,9 +3454,6 @@ img[loading="lazy"].loaded {
         font-size: 1.1rem;
     }
 
-    .certificates-track {
-        animation-duration: 25s;
-    }
 }
 
 /* Scroll Animation Styles */

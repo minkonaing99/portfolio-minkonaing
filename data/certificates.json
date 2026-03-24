@@ -19,15 +19,15 @@
     },
     {
         "certificate": "MikroTik Certified Network Associate",
-        "issurer": "Mikrotik",
+        "issurer": "MikroTik",
         "year": "2023",
-        "url": "https://mikrotik.com/certification"
+        "url": "https://mikrotik.com/certificates?search=2309NA3560"
     },
     {
         "certificate": "Google Cybersecurity Professional",
-        "issurer": "Coursera",
-        "year": "2023",
-        "url": "https://coursera.org/verify/professional-cert/GOOGLE-CYBERSECURITY"
+        "issurer": "Google / Coursera",
+        "year": "2024",
+        "url": "https://coursera.org/verify/professional-cert/9NIYUHZ4GMG3"
     },
     {
         "certificate": "Codelab Web Development",
@@ -40,5 +40,17 @@
         "issurer": "British Council",
         "year": "2025",
         "url": "https://ielts.org/verify"
+    },
+    {
+        "certificate": "Programming with JavaScript",
+        "issurer": "Meta / Coursera",
+        "year": "2025",
+        "url": "https://coursera.org/verify/X7AQM435GMTN"
+    },
+    {
+        "certificate": "Tools of the Trade: Linux and SQL",
+        "issurer": "Google / Coursera",
+        "year": "2024",
+        "url": "https://coursera.org/verify/GN35R4D6K4WJ"
     }
 ]

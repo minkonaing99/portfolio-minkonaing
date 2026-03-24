@@ -24,7 +24,7 @@
     },
     {
         "project_title": "MerxyLab - Online Learning Platform",
-        "description": "Authentication, Video Processing, Image Processing, Quiz System, Anti-cheating exam ",
+        "description": "Full-featured e-learning platform with JWT auth, video processing via FFMPEG, image handling, quiz engine, and an anti-cheating exam system. Background tasks handled with Celery and Redis.",
         "photo_dir": "project_images/merxy_lab(1).png",
         "alt": "Online Learning Platform",
         "github_repo": "https://github.com/minkonaing99/merxylab.git",
@@ -56,7 +56,7 @@
     },
     {
         "project_title": "Student Management System",
-        "description": "Authentication, profile and database management, blogging.",
+        "description": "Student portal with role-based authentication, profile and database management, and a built-in blogging system for academic communication.",
         "photo_dir": "project_images/well_being_1.png",
         "alt": "student management system",
         "github_repo": "https://github.com/minkonaing99/student_management_system.git",
@@ -84,7 +84,7 @@
     },
     {
         "project_title": "Personal Expense Tracker",
-        "description": "Expense tracking with charts and income management.",
+        "description": "Personal finance tracker with income vs. expense breakdowns, interactive charts, and category management to visualize spending patterns.",
         "photo_dir": "project_images/xpenses.png",
         "alt": "personal expense tracker",
         "github_repo": "https://github.com/minkonaing99/expense_tracker",
@@ -100,7 +100,7 @@
     },
     {
         "project_title": "Network Anomaly Detection",
-        "description": "Deep learning-based system for anomaly detection in network traffic.",
+        "description": "ML pipeline for detecting anomalous patterns in network traffic using TensorFlow deep learning and XGBoost ensemble models, trained on labeled network flow datasets.",
         "photo_dir": "project_images/build-bot.png",
         "alt": "network anomaly detection",
         "technologies": [
@@ -112,7 +112,7 @@
     },
     {
         "project_title": "Portfolio Design",
-        "description": "Static portfolio design using HTML and CSS.",
+        "description": "Responsive portfolio site designed from scratch with pure HTML, CSS, and JavaScript — no frameworks. Deployed on Vercel with custom animations and layout.",
         "photo_dir": "project_images/portfolio_znisa.png",
         "github_repo": "https://github.com/minkonaing99/znisa.git",
         "alt": "portfolio design",

@@ -1031,3 +1031,50 @@ function showCVWarning() {
     }, 300);
   }, 5000); // Auto-dismiss after 5 seconds
 }
+
+// Certificate carousel — JS-driven scroll with smooth deceleration on hover
+(function initCertificateCarousel() {
+  const NORMAL_SPEED = 0.6; // px per frame (~36px/s at 60fps)
+  const LERP_FACTOR = 0.04; // lower = smoother / slower ease
+
+  let position = 0;
+  let currentSpeed = NORMAL_SPEED;
+  let targetSpeed = NORMAL_SPEED;
+
+  function startCarousel() {
+    const track = document.getElementById("certificates-track");
+    const container = document.querySelector(".certificates-scroll-container");
+    if (!track || !container) return;
+
+    container.addEventListener("mouseenter", () => {
+      targetSpeed = 0;
+    });
+    container.addEventListener("mouseleave", () => {
+      targetSpeed = NORMAL_SPEED;
+    });
+
+    function tick() {
+      // Lerp current speed toward target for smooth ease
+      currentSpeed += (targetSpeed - currentSpeed) * LERP_FACTOR;
+
+      position -= currentSpeed;
+
+      // Seamless loop: content is duplicated, so reset at 50% of total width
+      const halfWidth = track.scrollWidth / 2;
+      if (Math.abs(position) >= halfWidth) {
+        position += halfWidth;
+      }
+
+      track.style.transform = `translateX(${position}px)`;
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  // Wait for certificates to load before starting
+  document.addEventListener("DOMContentLoaded", () => {
+    // Certificates are loaded async, so give them a moment to render
+    setTimeout(startCarousel, 300);
+  });
+})();
