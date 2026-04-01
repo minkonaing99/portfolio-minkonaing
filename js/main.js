@@ -9,9 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProjectsData();
   loadCertificatesData();
 
-  // Initialize counters
+  // Initialize experience display
   updateExperienceCountdown();
-  animateProjectsCounter();
   setInterval(updateExperienceCountdown, 24 * 60 * 60 * 1000);
 
 });

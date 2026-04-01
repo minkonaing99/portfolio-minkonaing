@@ -35,11 +35,3 @@ function copyToClipboard(text) {
     console.error("Could not copy text:", err);
   });
 }
-
-function showCVWarning() {
-  showNotification(
-    "Sorry, you cannot download the CV due to security reasons. Please contact me directly for my resume.",
-    "#f59e0b",
-    5000
-  );
-}

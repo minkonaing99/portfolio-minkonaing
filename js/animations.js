@@ -7,7 +7,6 @@ function initAllScrollAnimations() {
     .platform-card,
     .detail-item,
     .feature-item,
-    .stat-group,
     .bento-item,
     .about-image,
     .about-text,
@@ -15,7 +14,6 @@ function initAllScrollAnimations() {
     .about-section,
     .experience-section,
     .projects-section,
-    .about-skill,
     .certificate-section,
     .contact-section
   `);

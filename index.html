@@ -69,7 +69,7 @@
     <link rel="dns-prefetch" href="//t.me">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Structured Data - Person Schema -->
@@ -182,7 +182,6 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#experience" class="nav-link">Experience</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
@@ -217,7 +216,8 @@
                             <span class="status-dot"></span>
                             <span class="status-text">Available for work</span>
                         </div>
-                        <p class="hero-subtitle">Hi, I’m Min Ko Naing. <br> I help teams build fast, reliable web products.</p>
+                        <p class="hero-subtitle">Hi, I’m Min Ko Naing. <br> I help teams build fast, reliable web
+                            products.</p>
                         <div class="hero-description">
                             <p>I design and build practical web applications with clean UX, solid backend architecture,
                                 and maintainable code.
@@ -244,12 +244,13 @@
                 <div class="bento-box half-grid">
                     <div class="bento-item feature-item">
                         <div class="stats-container">
-                            <div class="stat-group experience">
-                                <h3 id="experience-countdown">0</h3>
+                            <div class="stat-card experience">
+                                <h3 id="experience-display">—</h3>
                                 <p>Experience</p>
                             </div>
-                            <div class="stat-group projects">
-                                <h3>0</h3>
+                            <div class="stat-divider-line"></div>
+                            <div class="stat-card projects">
+                                <h3>20+</h3>
                                 <p>Projects</p>
                             </div>
                         </div>
@@ -296,10 +297,10 @@
                 <div class="about-text">
                     <h3 class="about-name">Min Ko Naing</h3>
                     <p class="about-description">
-                        I’m a full-stack developer based in Bangkok with a background in computer networking — which
+                        I’m a <span class="text-highlight">full-stack developer</span> based in Bangkok with a background in <span class="text-highlight">computer networking</span> — which
                         means I care about both what gets built and how it actually runs in production. I’ve shipped
-                        client projects ranging from AI-powered sales dashboards to e-learning platforms, always
-                        aiming for clean architecture and real-world reliability over clever solutions.
+                        client projects ranging from <span class="text-highlight">AI-powered sales dashboards</span> to <span class="text-highlight">e-learning platforms</span>, always
+                        aiming for <span class="text-highlight">clean architecture</span> and <span class="text-highlight">real-world reliability</span> over clever solutions.
                     </p>
 
                     <div class="about-details">
@@ -317,96 +318,46 @@
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-heart"></i>
-                            <span>Focused on AI-powered product development</span>
+                            <span>Enjoy exploring AI agents and products</span>
                         </div>
                     </div>
 
+                    <div class="skills-grid" id="skills">
+                        <div class="skill-card">
+                            <img src="assets/svg/python.svg" alt="Python" class="skill-svg" loading="lazy">
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/svg/javascript.svg" alt="JavaScript" class="skill-svg" loading="lazy">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/svg/php.svg" alt="PHP" class="skill-svg" loading="lazy">
+                            <span class="skill-name">PHP</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/svg/sql.svg" alt="SQL" class="skill-svg" loading="lazy">
+                            <span class="skill-name">SQL</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/svg/aws.svg" alt="AWS" class="skill-svg" loading="lazy">
+                            <span class="skill-name">AWS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/svg/react.svg" alt="React" class="skill-svg" loading="lazy">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/svg/laravel.svg" alt="Laravel" class="skill-svg" loading="lazy">
+                            <span class="skill-name">Laravel</span>
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
 
         </div>
-    </section>
-
-    <section id="skills" class="about-skill">
-        <div class="skills-section">
-            <div class="section-header">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Technologies and tools I work with</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/html.svg" alt="HTML5 Web Development" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">HTML5</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/css.svg" alt="CSS3 Styling" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">CSS3</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/javascript.svg" alt="JavaScript Programming" class="skill-svg"
-                            loading="lazy">
-                    </div>
-                    <span class="skill-name">JavaScript</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/react.svg" alt="React Framework" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">React</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/php.svg" alt="PHP Backend Development" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">PHP</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/laravel.svg" alt="Laravel PHP Framework" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">Laravel</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/python.svg" alt="Python Programming" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">Python</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/sql.svg" alt="SQL Database Management" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">SQL</span>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <img src="assets/svg/aws.svg" alt="AWS Cloud Services" class="skill-svg" loading="lazy">
-                    </div>
-                    <span class="skill-name">AWS</span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="about-actions">
-            <a href="#contact" class="primary-btn">
-                <span>Get In Touch</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="#projects" class="secondary-btn">
-                <span>View Projects</span>
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-        </div>
-
-
     </section>
 
     <section class="certificate">
@@ -633,7 +584,6 @@
                         <ul>
                             <li><a href="#home">Home</a></li>
                             <li><a href="#about">About</a></li>
-                            <li><a href="#skills">Skills</a></li>
                             <li><a href="#experience">Experience</a></li>
                             <li><a href="#projects">Projects</a></li>
                             <li><a href="#contact">Contact</a></li>

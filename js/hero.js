@@ -1,82 +1,36 @@
-// Experience countdown
+// Experience display
 function updateExperienceCountdown() {
+  const el = document.getElementById("experience-display");
+  if (!el) return;
+
   const startDate = new Date("2024-06-01");
-  const currentDate = new Date();
-  const timeDiff = currentDate - startDate;
-  const years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
-  const months = Math.floor(
-    (timeDiff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44)
-  );
-  const days = Math.floor(
-    (timeDiff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24)
-  );
-  animateExperienceDisplay(years, months, days, timeDiff);
-}
+  const now = new Date();
+  const totalDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+  const totalMonths = totalDays / 30.44;
 
-function animateExperienceDisplay(years, months, days, timeDiff) {
-  const countdownElement = document.getElementById("experience-countdown");
-  if (!countdownElement) return;
-
-  if (timeDiff < 1000 * 60 * 60 * 24) {
-    countdownElement.textContent = "Just Started";
-    return;
+  let text;
+  if (totalMonths < 1) {
+    text = "Just Started";
+  } else if (totalMonths < 12) {
+    const m = Math.floor(totalMonths);
+    text = `${m}+ Month${m > 1 ? "s" : ""}`;
+  } else {
+    const years = totalDays / 365.25;
+    const nextYear = Math.ceil(years);
+    const diff = nextYear - years;
+    if (diff < 0.08) {
+      text = `${nextYear} Years`;
+    } else if (diff < 0.35) {
+      text = `Almost ${nextYear} Years`;
+    } else {
+      const y = Math.floor(years);
+      text = `${y}+ Year${y > 1 ? "s" : ""}`;
+    }
   }
 
-  const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  let currentDay = 0;
-
-  const animate = () => {
-    if (currentDay <= totalDays) {
-      let displayText = "";
-
-      if (currentDay === 0) {
-        displayText = "0 Days";
-      } else if (currentDay < 365) {
-        displayText = `${currentDay} ${currentDay === 1 ? "Day" : "Days"}`;
-      } else {
-        const yrs = Math.floor(currentDay / 365);
-        const remainingDays = currentDay % 365;
-        if (remainingDays === 0) {
-          displayText = `${yrs} ${yrs === 1 ? "Year" : "Years"}`;
-        } else {
-          displayText = `${yrs} ${yrs === 1 ? "Year" : "Years"} & ${remainingDays}\u00A0${remainingDays === 1 ? "Day" : "Days"}`;
-        }
-      }
-
-      countdownElement.textContent = displayText;
-      currentDay++;
-
-      const totalDuration = 300;
-      const remainingSteps = totalDays - currentDay;
-      const timePerStep = remainingSteps > 0 ? totalDuration / remainingSteps : 0;
-      const dynamicSpeed = Math.max(1, Math.min(20, timePerStep));
-      setTimeout(animate, dynamicSpeed);
-    }
-  };
-
-  setTimeout(animate, 500);
+  el.textContent = text;
 }
 
-// Projects counter animation
-function animateProjectsCounter() {
-  const projectsElement = document.querySelector(".stat-group.projects h3");
-  if (!projectsElement) return;
-
-  const targetNumber = 20;
-  let currentNumber = 0;
-  const increment = Math.ceil(targetNumber / 50);
-  const stepDuration = 2000 / 50;
-
-  const animate = () => {
-    if (currentNumber < targetNumber) {
-      currentNumber = Math.min(currentNumber + increment, targetNumber);
-      projectsElement.textContent = `More than ${currentNumber}`;
-      setTimeout(animate, stepDuration);
-    }
-  };
-
-  setTimeout(animate, 1000);
-}
 
 // CTA button ripple effect
 document.addEventListener("DOMContentLoaded", () => {

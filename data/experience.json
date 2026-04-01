@@ -1,32 +1,42 @@
 [
     {
         "position": "Freelance Web Developer",
-        "company": "Self-Employed",
+        "company": "Remote",
         "duration": "May 2024 - Present",
         "responsibilities": [
-            "Built websites focusing on responsive design and user-friendly interfaces.",
-            "Delivered 5+ client projects with full-stack architecture, AI integration, and cloud deployments."
+            "Built a sales admin dashboard for a startup tailored to their operational needs, including a public-facing page, POS-style sales entry, and profit/revenue analytics.",
+            "Developed a Telegram bot connected to the same backend, allowing clients to view sales summaries and key metrics directly from Telegram without opening the dashboard.",
+            "Engineered the backend of an EdTech platform including video processing pipeline, lesson progress tracking, and API integrations with a public landing page, deployed on AWS using Docker.",
+            "Maintained both systems in active production across Linux/Apache environments with structured deployment and clean, maintainable codebases."
         ]
     },
     {
-        "position": "Web Content Upload Team (WordPress)",
-        "company": "GeoTek (Remote)",
-        "duration": "June 2025 - August 2025",
+        "position": "Web Developer (Freelance Contract)",
+        "company": "Digimium | Remote",
+        "duration": "Nov 2025 - Feb 2026",
         "responsibilities": [
-            "Designed WordPress layouts as practice assignments.",
-            "Practiced frontend development from Figma designs provided.",
-            "Conducted cold email database research for marketing purposes.",
-            "Uploaded and managed product content belonging to the company."
+            "Delivered 3 websites — 2 for production and 1 dedicated to feature testing — covering a public-facing landing page with product pricing, SEO optimization, and admin-controlled content management.",
+            "Built an internal admin dashboard that replaced a manual spreadsheet workflow, reducing data entry from 11 fields to 2 by auto-calculating — an 82% reduction — saving admin time and eliminating input errors.",
+            "Centralized business data into a single system shared across all admins, with structured backup replacing scattered spreadsheet files. (PHP, JavaScript, AWS EC2, RDS, MySQL)"
         ]
     },
     {
-        "position": "Core Network Intern",
-        "company": "Global Technology Group",
-        "duration": "April 2024 - May 2024",
+        "position": "Web Developer Intern",
+        "company": "GeoTek RFID",
+        "duration": "July 2025 - Nov 2025",
         "responsibilities": [
-            "Gained practical understanding of organizational IT infrastructure and internal networking operations.",
-            "Assisted in configuring and handling networking devices such as routers, switches, and modems.",
-            "Learned and applied standard procedures for documenting network configurations and changes."
+            "Completed two tracks of work each week: independently designing new page layouts with creative freedom, and separately converting Figma designs into pixel-accurate frontend using CSS and JavaScript.",
+            "Built all pages on WordPress, worked in a team of 4, and presented progress to senior developers every Monday and Friday, incorporating feedback and iterating each cycle."
+        ]
+    },
+    {
+        "position": "Core Network Engineer Intern",
+        "company": "Global Net Technology",
+        "duration": "Apr 2024 - May 2024",
+        "responsibilities": [
+            "Supported enterprise network operations; assisted in configuration of routers, switches, and modems.",
+            "Maintained network documentation and device configuration records for 50+ systems.",
+            "Learned network security procedures, infrastructure monitoring, and uptime management."
         ]
     },
     {
