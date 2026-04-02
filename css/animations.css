@@ -1,0 +1,215 @@
+/* Enhanced Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* scroll-behavior on * removed: applying it to every element hurts performance */
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* ── Keyframes ───────────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ── Nav entrance animations ─────────────────────── */
+.nav-logo {
+    animation: slideInRight 0.6s ease;
+}
+
+.nav-menu {
+    animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.nav-button {
+    animation: slideInRight 0.6s ease 0.4s both;
+}
+
+/* Active link styles */
+.nav-link.active {
+    color: var(--secondary-color);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Ripple effect for button */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+/* Page loading fade-in */
+body {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Animate-in class for scroll animations */
+.animate-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ── Scroll Reveal ───────────────────────────────── */
+.scroll-animate {
+    opacity: 0 !important;
+    transform: translateY(24px);
+    /* expo ease-out: snaps into place naturally */
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-animate.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0);
+}
+
+/* Staggered animations */
+.stagger-animate {
+    opacity: 0 !important;
+    transform: translateY(32px) scale(0.97);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.stagger-animate.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1);
+}
+
+/* Disable scroll animations on mobile */
+@media (max-width: 768px) {
+    .scroll-animate,
+    .stagger-animate {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        will-change: auto !important;
+    }
+
+    .scroll-animate.animate-in,
+    .stagger-animate.animate-in {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .scroll-animate {
+        transform: translateY(20px);
+    }
+
+    .stagger-animate {
+        transform: translateY(25px) scale(0.98);
+    }
+}
+
+/* Animation delays for staggered effects */
+.stagger-animate:nth-child(1)  { transition-delay: 0.1s; }
+.stagger-animate:nth-child(2)  { transition-delay: 0.2s; }
+.stagger-animate:nth-child(3)  { transition-delay: 0.3s; }
+.stagger-animate:nth-child(4)  { transition-delay: 0.4s; }
+.stagger-animate:nth-child(5)  { transition-delay: 0.5s; }
+.stagger-animate:nth-child(6)  { transition-delay: 0.6s; }
+.stagger-animate:nth-child(7)  { transition-delay: 0.7s; }
+.stagger-animate:nth-child(8)  { transition-delay: 0.8s; }
+.stagger-animate:nth-child(9)  { transition-delay: 0.9s; }
+.stagger-animate:nth-child(10) { transition-delay: 1s; }
+
+/* Enhanced hover for revealed elements */
+.scroll-animate.animate-in:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Loading states */
+.scroll-animate:not(.animate-in) {
+    pointer-events: none;
+}
+
+/* ── GPU compositing hints ───────────────────────── */
+.scroll-animate {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.project-card,
+.experience-item,
+.skill-card,
+.certificate-item,
+.platform-card,
+.detail-item,
+.about-content>div:not(.about-image),
+.about-image .image-container,
+.section-header,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.hero-actions a,
+.bento-box,
+.footer-brand,
+.footer-links>div {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .stagger-animate {
+        transition: none;
+        transform: none;
+        opacity: 1;
+    }
+}

@@ -4,10 +4,10 @@
         "company": "Remote",
         "duration": "May 2024 - Present",
         "responsibilities": [
-            "Built a sales admin dashboard for a startup tailored to their operational needs, including a public-facing page, POS-style sales entry, and profit/revenue analytics.",
-            "Developed a Telegram bot connected to the same backend, allowing clients to view sales summaries and key metrics directly from Telegram without opening the dashboard.",
-            "Engineered the backend of an EdTech platform including video processing pipeline, lesson progress tracking, and API integrations with a public landing page, deployed on AWS using Docker.",
-            "Maintained both systems in active production across Linux/Apache environments with structured deployment and clean, maintainable codebases."
+            "Built a sales admin dashboard with POS-style entry, profit analytics, and a public-facing page.",
+            "Developed a Telegram bot for clients to check sales summaries without opening the dashboard.",
+            "Engineered an EdTech backend with video processing, lesson tracking, and AWS/Docker deployment.",
+            "Maintained both systems in active production on Linux/Apache environments."
         ]
     },
     {
@@ -15,9 +15,9 @@
         "company": "Digimium | Remote",
         "duration": "Nov 2025 - Feb 2026",
         "responsibilities": [
-            "Delivered 3 websites — 2 for production and 1 dedicated to feature testing — covering a public-facing landing page with product pricing, SEO optimization, and admin-controlled content management.",
-            "Built an internal admin dashboard that replaced a manual spreadsheet workflow, reducing data entry from 11 fields to 2 by auto-calculating — an 82% reduction — saving admin time and eliminating input errors.",
-            "Centralized business data into a single system shared across all admins, with structured backup replacing scattered spreadsheet files. (PHP, JavaScript, AWS EC2, RDS, MySQL)"
+            "Delivered 3 websites covering a landing page, product pricing, SEO, and content management.",
+            "Replaced a manual spreadsheet workflow, cutting data entry from 11 fields to 2 (82% reduction).",
+            "Centralized business data into one shared system with structured backups across all admins."
         ]
     },
     {
@@ -25,8 +25,8 @@
         "company": "GeoTek RFID",
         "duration": "July 2025 - Nov 2025",
         "responsibilities": [
-            "Completed two tracks of work each week: independently designing new page layouts with creative freedom, and separately converting Figma designs into pixel-accurate frontend using CSS and JavaScript.",
-            "Built all pages on WordPress, worked in a team of 4, and presented progress to senior developers every Monday and Friday, incorporating feedback and iterating each cycle."
+            "Independently designed page layouts and converted Figma designs into pixel-accurate frontends.",
+            "Built pages on WordPress in a team of 4, presenting progress twice weekly to senior developers."
         ]
     },
     {
@@ -34,9 +34,9 @@
         "company": "Global Net Technology",
         "duration": "Apr 2024 - May 2024",
         "responsibilities": [
-            "Supported enterprise network operations; assisted in configuration of routers, switches, and modems.",
-            "Maintained network documentation and device configuration records for 50+ systems.",
-            "Learned network security procedures, infrastructure monitoring, and uptime management."
+            "Assisted in configuring routers, switches, and modems for enterprise network operations.",
+            "Maintained configuration records and documentation for 50+ network devices.",
+            "Learned infrastructure monitoring, network security procedures, and uptime management."
         ]
     },
     {
@@ -44,8 +44,8 @@
         "company": "New Sony Electric Store (Lashio)",
         "duration": "December 2021 - March 2022",
         "responsibilities": [
-            "Oversaw store inventory and stock levels, ensuring optimal levels for operational efficiency.",
-            "Created and maintained detailed daily reports, securely stored in digital format for easy access and reference."
+            "Managed store inventory and stock levels to ensure operational efficiency.",
+            "Created and maintained detailed daily reports stored securely in digital format."
         ]
     }
 ]

@@ -1,0 +1,133 @@
+/* Certificate Section Styles */
+.certificate-section {
+    padding: 0rem 0rem 2rem;
+    position: relative;
+    overflow: visible;
+}
+
+.certificates-scroll-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+    padding: 1rem 0;
+    /* Fade out cards near edges for a smooth entrance/exit */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.certificates-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    will-change: transform;
+    transform: translateZ(0); /* promote to GPU layer */
+}
+
+.certificate-item {
+    background: linear-gradient(135deg, rgba(8, 100, 120, 0.2), rgba(15, 20, 25, 0.1));
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 450px;
+    max-width: 450px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.certificate-item:hover::before {
+    transform: scaleX(1);
+}
+
+.certificate-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(56, 189, 248, 0.1);
+    z-index: 10;
+    position: relative;
+}
+
+.certificate-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.certificate-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.certificate-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.certificate-issuer {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.certificate-year {
+    font-size: 0.9rem;
+    color: rgba(245, 245, 245, 0.7);
+    font-weight: 500;
+}
+
+/* Smooth slowdown handled by JS */
+
+/* ── Responsive: Certificates ────────────────────── */
+@media (max-width: 1024px) {
+    .certificate-section {
+        padding: 1.8rem 1.5rem 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificates-scroll-container {
+        padding: 1.5rem 0;
+    }
+
+    .certificate-item {
+        min-width: 300px;
+        max-width: 300px;
+        padding: 1.5rem;
+    }
+
+    .certificate-title {
+        font-size: 1.2rem;
+    }
+
+    .certificate-section {
+        padding: 1.5rem 1rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-item {
+        min-width: 280px;
+        max-width: 280px;
+        padding: 1.2rem;
+    }
+
+    .certificate-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .certificate-title {
+        font-size: 1.1rem;
+    }
+
+    .certificate-section {
+        padding: 1.2rem 0.8rem 1.5rem;
+    }
+}

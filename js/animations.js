@@ -52,35 +52,29 @@ document.addEventListener("DOMContentLoaded", function () {
   lazyImages.forEach((img) => imageObserver.observe(img));
 
   // Scroll reveal animations
-  setTimeout(() => {
-    if (window.innerWidth > 768) {
-      const options = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+  if (window.innerWidth > 768) {
+    // Trigger when 8% of the element enters the viewport (earlier = less jarring)
+    const options = { threshold: 0.08, rootMargin: "0px 0px -20px 0px" };
 
-      const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            if (el.classList.contains("scroll-animate")) {
-              el.classList.add("animate-in");
-            }
-            if (el.classList.contains("stagger-animate")) {
-              setTimeout(() => el.classList.add("animate-in"), index * 150);
-            }
-            scrollObserver.unobserve(el);
-          }
-        });
-      }, options);
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // CSS nth-child transition-delay handles stagger, no JS setTimeout needed
+          entry.target.classList.add("animate-in");
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, options);
 
-      document.querySelectorAll(".scroll-animate, .stagger-animate").forEach((el) => {
-        scrollObserver.observe(el);
-      });
-    } else {
-      // On mobile, show all elements immediately without animation
-      document.querySelectorAll(".scroll-animate, .stagger-animate").forEach((el) => {
-        el.classList.add("animate-in");
-      });
-    }
-  }, 100);
+    document.querySelectorAll(".scroll-animate, .stagger-animate").forEach((el) => {
+      scrollObserver.observe(el);
+    });
+  } else {
+    // On mobile, show all elements immediately without animation
+    document.querySelectorAll(".scroll-animate, .stagger-animate").forEach((el) => {
+      el.classList.add("animate-in");
+    });
+  }
 
   // Parallax effect for background elements
   const parallaxElements = document.querySelectorAll(".parallax-bg");

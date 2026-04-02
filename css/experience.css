@@ -1,0 +1,386 @@
+/* Experience Section */
+.experience-section {
+    padding: 2rem 2rem 4rem;
+    background: linear-gradient(135deg, rgba(15, 20, 25, 0.95) 0%, rgba(56, 189, 248, 0.06) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.experience-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--secondary-color), rgba(56, 189, 248, 0.3));
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+    width: 100%;
+}
+
+.experience-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experience-item:nth-child(odd) {
+    padding-right: 50%;
+    text-align: left;
+}
+
+.experience-item:nth-child(even) {
+    padding-left: 50%;
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+    transition: all 0.3s ease;
+    z-index: 3;
+    transform: translateX(-50%);
+}
+
+.experience-item:nth-child(odd)::before {
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.experience-item:nth-child(even)::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.experience-item:hover::before {
+    background: #0ea5e9;
+    box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.3);
+}
+
+.experience-content {
+    background: linear-gradient(135deg, rgba(8, 100, 120, 0.2), rgba(15, 20, 25, 0.1));
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.experience-content::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.experience-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.experience-content:hover::before {
+    opacity: 1;
+}
+
+.experience-position {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--text-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.experience-company {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.experience-duration {
+    font-size: 0.9rem;
+    color: rgba(245, 245, 245, 0.7);
+    font-weight: 500;
+}
+
+/* Experience Tooltip Styles */
+.experience-tooltip {
+    position: absolute;
+    top: 20px;
+    background: linear-gradient(135deg, rgba(18, 18, 18, .8), rgba(15, 20, 25, .7));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    min-width: 300px;
+    max-width: 400px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-item:nth-child(odd) .experience-tooltip {
+    right: 100%;
+    margin-right: .5rem;
+}
+
+.experience-item:nth-child(even) .experience-tooltip {
+    left: 100%;
+    margin-left: .5rem;
+}
+
+.experience-item:nth-child(odd) .experience-tooltip::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(56, 189, 248, 0.3);
+}
+
+.experience-item:nth-child(even) .experience-tooltip::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid rgba(56, 189, 248, 0.3);
+}
+
+.experience-tooltip.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltip-content h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.tooltip-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tooltip-content li {
+    font-size: 0.9rem;
+    color: rgba(245, 245, 245, 0.9);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tooltip-content li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.tooltip-content li:last-child {
+    margin-bottom: 0;
+}
+
+/* ── Responsive: Experience ──────────────────────── */
+@media (max-width: 1400px) {
+    .experience-tooltip {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .experience-section {
+        padding: 2rem 1.5rem 4rem;
+    }
+
+    .experience-timeline {
+        max-width: 700px;
+    }
+
+    .experience-content {
+        padding: 1.5rem;
+    }
+
+    .experience-position {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-section {
+        padding: 1.5rem 1rem 2rem;
+    }
+
+    .experience-timeline {
+        max-width: 100%;
+        padding: 1rem 0;
+    }
+
+    .experience-timeline::before {
+        left: 20px;
+    }
+
+    .experience-item {
+        margin-bottom: 2rem;
+    }
+
+    .experience-item:nth-child(odd),
+    .experience-item:nth-child(even) {
+        padding-left: 60px;
+        padding-right: 0;
+        text-align: left;
+    }
+
+    .experience-item:nth-child(odd)::before {
+        left: -5px !important;
+    }
+
+    .experience-item:nth-child(even)::before {
+        left: 20px !important;
+    }
+
+    .experience-content {
+        padding: 1.5rem;
+    }
+
+    .experience-position {
+        font-size: 1.2rem;
+    }
+
+    .experience-company {
+        font-size: 1rem;
+    }
+
+    .experience-duration {
+        font-size: 0.85rem;
+    }
+
+    .experience-tooltip {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-section {
+        padding: 1.2rem 0.8rem 1.5rem;
+    }
+
+    .experience-timeline {
+        padding: 0.5rem 0;
+    }
+
+    .experience-timeline::before {
+        left: 15px;
+    }
+
+    .experience-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .experience-item:nth-child(odd),
+    .experience-item:nth-child(even) {
+        padding-left: 50px;
+        padding-right: 0;
+    }
+
+    .experience-item:nth-child(odd)::before {
+        left: -7px !important;
+        width: 14px;
+        height: 14px;
+    }
+
+    .experience-item:nth-child(even)::before {
+        left: 15px !important;
+        width: 14px;
+        height: 14px;
+    }
+
+    .experience-content {
+        padding: 1.2rem;
+    }
+
+    .experience-position {
+        font-size: 1.1rem;
+    }
+
+    .experience-company {
+        font-size: 0.95rem;
+    }
+
+    .experience-duration {
+        font-size: 0.8rem;
+    }
+
+    .experience-tooltip {
+        display: none !important;
+    }
+}

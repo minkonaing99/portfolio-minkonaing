@@ -30,16 +30,20 @@ function displayCertificates(certificates) {
 
   // Duplicate for seamless infinite scroll
   certificatesTrack.innerHTML = certificateHTML + certificateHTML;
+
+  // Signal that DOM is ready for the carousel to start
+  document.dispatchEvent(new Event("certificates-loaded"));
 }
 
-// Certificate carousel — JS-driven scroll with smooth deceleration on hover
+// Certificate carousel: delta-time based for consistent speed across all refresh rates
 (function initCertificateCarousel() {
-  const NORMAL_SPEED = 0.6;
-  const LERP_FACTOR = 0.04;
+  const SPEED_PX_PER_SEC = 60; // pixels per second, frame-rate independent
+  const LERP_FACTOR = 0.08;    // higher = snappier hover pause/resume
 
   let position = 0;
-  let currentSpeed = NORMAL_SPEED;
-  let targetSpeed = NORMAL_SPEED;
+  let currentSpeed = 0;        // eases in from 0 on start
+  let targetSpeed = SPEED_PX_PER_SEC;
+  let lastTime = null;
 
   function startCarousel() {
     const track = document.getElementById("certificates-track");
@@ -47,11 +51,15 @@ function displayCertificates(certificates) {
     if (!track || !container) return;
 
     container.addEventListener("mouseenter", () => { targetSpeed = 0; });
-    container.addEventListener("mouseleave", () => { targetSpeed = NORMAL_SPEED; });
+    container.addEventListener("mouseleave", () => { targetSpeed = SPEED_PX_PER_SEC; });
 
-    function tick() {
+    function tick(timestamp) {
+      if (lastTime === null) lastTime = timestamp;
+      const delta = Math.min((timestamp - lastTime) / 1000, 0.05); // seconds, capped to avoid jump on tab focus
+      lastTime = timestamp;
+
       currentSpeed += (targetSpeed - currentSpeed) * LERP_FACTOR;
-      position -= currentSpeed;
+      position -= currentSpeed * delta;
 
       const halfWidth = track.scrollWidth / 2;
       if (Math.abs(position) >= halfWidth) {
@@ -65,8 +73,6 @@ function displayCertificates(certificates) {
     requestAnimationFrame(tick);
   }
 
-  // Wait for certificates to load before starting
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(startCarousel, 300);
-  });
+  // Start after certificates are injected into the DOM
+  document.addEventListener("certificates-loaded", startCarousel);
 })();

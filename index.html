@@ -69,7 +69,15 @@
     <link rel="dns-prefetch" href="//t.me">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/experience.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/certificates.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Structured Data - Person Schema -->
@@ -245,12 +253,12 @@
                     <div class="bento-item feature-item">
                         <div class="stats-container">
                             <div class="stat-card experience">
-                                <h3 id="experience-display">—</h3>
+                                <h3 id="experience-display">0</h3>
                                 <p>Experience</p>
                             </div>
                             <div class="stat-divider-line"></div>
                             <div class="stat-card projects">
-                                <h3>20+</h3>
+                                <h3>10+</h3>
                                 <p>Projects</p>
                             </div>
                         </div>
@@ -297,10 +305,13 @@
                 <div class="about-text">
                     <h3 class="about-name">Min Ko Naing</h3>
                     <p class="about-description">
-                        I’m a <span class="text-highlight">full-stack developer</span> based in Bangkok with a background in <span class="text-highlight">computer networking</span> — which
+                        I’m a <span class="text-highlight">full-stack developer</span> based in Bangkok with a
+                        background in <span class="text-highlight">computer networking</span>, which
                         means I care about both what gets built and how it actually runs in production. I’ve shipped
-                        client projects ranging from <span class="text-highlight">AI-powered sales dashboards</span> to <span class="text-highlight">e-learning platforms</span>, always
-                        aiming for <span class="text-highlight">clean architecture</span> and <span class="text-highlight">real-world reliability</span> over clever solutions.
+                        client projects ranging from <span class="text-highlight">AI-powered sales dashboards</span> to
+                        <span class="text-highlight">e-learning platforms</span>, always
+                        aiming for <span class="text-highlight">clean architecture</span> and <span
+                            class="text-highlight">real-world reliability</span> over clever solutions.
                     </p>
 
                     <div class="about-details">
@@ -362,6 +373,10 @@
 
     <section class="certificate">
         <div class="certificate-container">
+            <div class="section-header">
+                <h2 class="section-title">Certificates</h2>
+                <p class="section-subtitle">Courses & certifications I've completed</p>
+            </div>
             <div class="certificate-section">
                 <div class="certificates-scroll-container">
                     <div class="certificates-track" id="certificates-track">
@@ -430,116 +445,141 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="contact-container">
-            <div class="section-header">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">Let's work together</p>
-            </div>
+            <div class="contact-layout">
 
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out
-                        through any of these platforms!</p>
+                <!-- Left: Statement + primary CTA -->
+                <div class="contact-left scroll-animate">
+                    <div class="contact-availability">
+                        <span class="availability-dot"></span>
+                        <span>Available for new opportunities</span>
+                    </div>
 
-                    <div class="contact-platforms">
-                        <div class="platform-card primary" data-platform="email">
-                            <div class="platform-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="platform-info">
-                                <h4>Email</h4>
-                                <p>mkn.minko.naing99@gmail.com</p>
-                                <span class="platform-status">Available 24/7</span>
-                            </div>
-                            <div class="platform-action">
-                                <button class="platform-btn" onclick="copyToClipboard('mkn.minko.naing99@gmail.com')">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <h2 class="contact-headline">
+                        Let's build<br>
+                        <span class="contact-headline-accent">something</span><br>
+                        together.
+                    </h2>
 
-                        <div class="platform-card primary" data-platform="linkedin">
-                            <div class="platform-icon linkedin">
-                                <img src="assets/svg/linkedin.svg" alt="LinkedIn" class="platform-svg" loading="lazy">
-                            </div>
-                            <div class="platform-info">
-                                <h4>LinkedIn</h4>
-                                <p>Connect professionally</p>
-                                <span class="platform-status">Professional Network</span>
-                            </div>
-                            <div class="platform-action">
-                                <a href="https://www.linkedin.com/in/min-ko-naing/" class="platform-btn"
-                                    target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
+                    <p class="contact-desc">
+                        Whether it's a full-time role, freelance project, or just a conversation,
+                        I'm always open. Pick the channel that works best for you.
+                    </p>
 
-                        <div class="platform-card" data-platform="github">
-                            <div class="platform-icon github">
-                                <img src="assets/svg/github.svg" alt="GitHub" class="platform-svg" loading="lazy">
-                            </div>
-                            <div class="platform-info">
-                                <h4>GitHub</h4>
-                                <p>View my projects</p>
-                                <span class="platform-status">Code Repository</span>
-                            </div>
-                            <div class="platform-action">
-                                <a href="https://github.com/minkonaing99" class="platform-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="platform-card" data-platform="line">
-                            <div class="platform-icon line">
-                                <img src="assets/svg/line.svg" alt="Line" class="platform-svg" loading="lazy">
-                            </div>
-                            <div class="platform-info">
-                                <h4>Line</h4>
-                                <p>Quick messaging</p>
-                                <span class="platform-status">Instant Chat</span>
-                            </div>
-                            <div class="platform-action">
-                                <a href="https://line.me/ti/p/~mk_naing" class="platform-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="platform-card" data-platform="telegram">
-                            <div class="platform-icon telegram">
-                                <img src="assets/svg/telegram.svg" alt="Telegram" class="platform-svg" loading="lazy">
-                            </div>
-                            <div class="platform-info">
-                                <h4>Telegram</h4>
-                                <p>Secure messaging</p>
-                                <span class="platform-status">Encrypted Chat</span>
-                            </div>
-                            <div class="platform-action">
-                                <a href="https://t.me/mk_naing" class="platform-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="platform-card" data-platform="viber">
-                            <div class="platform-icon viber">
-                                <img src="assets/svg/viber.svg" alt="Viber" class="platform-svg" loading="lazy">
-                            </div>
-                            <div class="platform-info">
-                                <h4>Viber</h4>
-                                <p>Voice & video calls</p>
-                                <span class="platform-status">Free Calls</span>
-                            </div>
-                            <div class="platform-action">
-                                <a href="viber://chat?number=%2B619018010" class="platform-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="contact-email-row">
+                        <a href="mailto:mkn.minko.naing99@gmail.com" class="contact-email-cta">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg>
+                            <span>mkn.minko.naing99@gmail.com</span>
+                        </a>
+                        <button class="contact-copy-btn" onclick="copyToClipboard('mkn.minko.naing99@gmail.com')"
+                            aria-label="Copy email address">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
+
+                <!-- Right: Social channels -->
+                <div class="contact-right scroll-animate">
+                    <p class="contact-channels-label">Other ways to reach me</p>
+                    <div class="contact-channels">
+
+                        <a href="https://www.linkedin.com/in/min-ko-naing/" class="contact-channel" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="channel-icon">
+                                <img src="assets/svg/linkedin.svg" alt="LinkedIn" loading="lazy">
+                            </div>
+                            <div class="channel-info">
+                                <span class="channel-name">LinkedIn</span>
+                                <span class="channel-sub">Professional network</span>
+                            </div>
+                            <svg class="channel-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+
+                        <a href="https://github.com/minkonaing99" class="contact-channel" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="channel-icon">
+                                <img src="assets/svg/github.svg" alt="GitHub" loading="lazy">
+                            </div>
+                            <div class="channel-info">
+                                <span class="channel-name">GitHub</span>
+                                <span class="channel-sub">View my code</span>
+                            </div>
+                            <svg class="channel-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+
+                        <a href="https://line.me/ti/p/~mk_naing" class="contact-channel" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="channel-icon">
+                                <img src="assets/svg/line.svg" alt="Line" loading="lazy">
+                            </div>
+                            <div class="channel-info">
+                                <span class="channel-name">Line</span>
+                                <span class="channel-sub">Instant messaging</span>
+                            </div>
+                            <svg class="channel-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+
+                        <a href="https://t.me/mk_naing" class="contact-channel" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="channel-icon">
+                                <img src="assets/svg/telegram.svg" alt="Telegram" loading="lazy">
+                            </div>
+                            <div class="channel-info">
+                                <span class="channel-name">Telegram</span>
+                                <span class="channel-sub">Encrypted chat</span>
+                            </div>
+                            <svg class="channel-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+
+                        <a href="viber://chat?number=%2B619018010" class="contact-channel" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="channel-icon">
+                                <img src="assets/svg/viber.svg" alt="Viber" loading="lazy">
+                            </div>
+                            <div class="channel-info">
+                                <span class="channel-name">Viber</span>
+                                <span class="channel-sub">Voice &amp; video calls</span>
+                            </div>
+                            <svg class="channel-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 7h10v10" />
+                                <path d="M7 17 17 7" />
+                            </svg>
+                        </a>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>

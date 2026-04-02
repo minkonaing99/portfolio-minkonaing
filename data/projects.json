@@ -99,31 +99,15 @@
         ]
     },
     {
-        "project_title": "Network Anomaly Detection",
+        "project_title": "Network Anomaly Detection using ML",
         "description": "ML pipeline for detecting anomalous patterns in network traffic using TensorFlow deep learning and XGBoost ensemble models, trained on labeled network flow datasets.",
         "photo_dir": "project_images/build-bot.png",
-        "alt": "network anomaly detection",
+        "alt": "network anomaly detection using Deep Learning",
         "technologies": [
             "Python",
             "Anaconda Notebook",
             "TensorFlow",
             "XGBoost"
-        ]
-    },
-    {
-        "project_title": "Portfolio Design",
-        "description": "Responsive portfolio site designed from scratch with pure HTML, CSS, and JavaScript — no frameworks. Deployed on Vercel with custom animations and layout.",
-        "photo_dir": "project_images/portfolio_znisa.png",
-        "github_repo": "https://github.com/minkonaing99/znisa.git",
-        "alt": "portfolio design",
-        "showcase": [
-            "znisa.png"
-        ],
-        "technologies": [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Vercel"
         ]
     },
     {
@@ -139,7 +123,7 @@
         ]
     },
     {
-        "project_title": "Sales Management System + AI Insights",
+        "project_title": "Sales Management System + Telegram Bot",
         "description": "Full-stack system to track, analyze, and visualize sales performance using PHP, JS, and Aurora SQL. Integrated Gemini AI for automated sales commentary and deployed Telegram bot for sales input, reducing manual reporting by 60%.",
         "photo_dir": "project_images/dashboard_digimium.png",
         "alt": "sales management ai insights",
@@ -160,25 +144,6 @@
             "Gemini API",
             "AWS EC2",
             "Amazon Aurora"
-        ]
-    },
-    {
-        "project_title": "Sales Management System with Telegram Bot",
-        "description": "Sales recording system using AWS EC2, database integration, and Python-based Telegram bot for daily sales reminders and quick entries.",
-        "photo_dir": "project_images/build-bot.png",
-        "alt": "sales management system with telegram bot",
-        "showcase": [
-            "dashboard_digimium.png",
-            "dashboard_digimium1.png",
-            "dashboard_digimium2.png",
-            "dashboard_digimium3.png"
-        ],
-        "technologies": [
-            "MySQL",
-            "Amazon Aurora",
-            "AWS EC2",
-            "Python",
-            "Telegram Bot API"
         ]
     },
     {
