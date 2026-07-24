@@ -1,5 +1,6 @@
 /* ==========================================================================
-   Experience: engineering log
+   Experience: duty-log console
+   Left rail selects a position, right panel prints its record.
    ========================================================================== */
 
 .experience-section {
@@ -11,68 +12,132 @@
     margin: 0 auto;
 }
 
-.experience-timeline {
+.exp-console {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    gap: clamp(var(--space-8), 5vw, var(--space-16));
+    align-items: start;
+}
+
+/* ── Selector rail ──────────────────────────────── */
+.exp-list {
     display: flex;
     flex-direction: column;
+    border-top: 1px solid var(--line-1);
 }
 
-.experience-item {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: var(--space-8);
-    padding: var(--space-6) 0;
-    border-top: 1px solid var(--line-0);
-}
-
-.experience-item:last-child {
+.exp-tab {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    width: 100%;
+    padding: var(--space-4) var(--space-3);
+    background: none;
+    border: 0;
     border-bottom: 1px solid var(--line-0);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out);
 }
 
-.experience-duration {
+.exp-tab:hover {
+    background: var(--panel-2);
+}
+
+.exp-tab.active {
+    background: var(--panel-2);
+}
+
+.exp-tab-index {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
+    color: var(--ink-3);
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+.exp-tab.active .exp-tab-index {
     color: var(--signal);
 }
 
-.experience-company {
+.exp-tab-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.exp-tab-position {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--ink-2);
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+.exp-tab.active .exp-tab-position,
+.exp-tab:hover .exp-tab-position {
+    color: var(--ink-1);
+}
+
+.exp-tab-duration {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+}
+
+/* ── Detail panel ───────────────────────────────── */
+.exp-detail {
+    min-height: 320px;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-1);
+}
+
+.exp-detail-position {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    font-stretch: 110%;
+    color: var(--ink-1);
+    margin-bottom: var(--space-2);
+}
+
+.exp-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wide);
     color: var(--ink-3);
-    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
 }
 
-.experience-position {
-    font-size: var(--text-lg);
-    font-weight: 650;
-    color: var(--ink-1);
-    margin-bottom: var(--space-3);
+.exp-detail-duration {
+    color: var(--signal);
 }
 
-.experience-duties {
+.exp-duties {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: var(--space-3);
     max-width: 70ch;
 }
 
-.experience-duties li {
+.exp-duty {
     position: relative;
     padding-left: var(--space-4);
     font-size: var(--text-sm);
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--ink-2);
 }
 
-.experience-duties li::before {
+.exp-duty::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 0.55em;
+    top: 0.6em;
     width: 5px;
     height: 5px;
     background: var(--signal);
@@ -84,13 +149,44 @@
         padding: 0 var(--space-4) var(--space-16);
     }
 
-    .experience-item {
+    .exp-console {
         grid-template-columns: 1fr;
-        gap: var(--space-3);
-        padding: var(--space-4) 0;
+        gap: var(--space-6);
     }
 
-    .experience-company {
-        margin-top: var(--space-1);
+    /* Selector becomes a scroll-snap pill rail */
+    .exp-list {
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        border-top: 0;
+        gap: var(--space-2);
+        padding-bottom: var(--space-2);
+        scrollbar-width: none;
+    }
+
+    .exp-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .exp-tab {
+        flex: 0 0 auto;
+        width: auto;
+        scroll-snap-align: start;
+        border: 1px solid var(--line-1);
+        border-radius: var(--radius-1);
+        padding: var(--space-2) var(--space-4);
+    }
+
+    .exp-tab.active {
+        border-color: var(--signal);
+    }
+
+    .exp-tab-duration {
+        display: none;
+    }
+
+    .exp-detail {
+        min-height: 0;
     }
 }
