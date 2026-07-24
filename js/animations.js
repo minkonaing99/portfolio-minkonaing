@@ -55,6 +55,8 @@ function initScrollReveals() {
 }
 
 function initHeroIntro() {
+  if (!document.querySelector(".hero-title")) return;
+
   const tl = gsap.timeline({
     defaults: { ease: "expo.out", duration: 0.9 },
   });

@@ -26,15 +26,16 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for same-page hash links only.
+// Cross-page links (e.g. index.html#about from projects.html) navigate normally.
 navLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
-    e.preventDefault();
     const targetId = link.getAttribute("href");
+    if (!targetId || !targetId.startsWith("#")) return;
     const targetSection = document.querySelector(targetId);
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (!targetSection) return;
+    e.preventDefault();
+    targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 

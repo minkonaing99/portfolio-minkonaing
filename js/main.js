@@ -4,13 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("loaded");
   }, 100);
 
-  // Load dynamic data
-  loadExperienceData();
-  loadProjectsData();
-  loadCertificatesData();
+  // Load dynamic data (only the loaders present on this page)
+  if (typeof loadExperienceData === "function") loadExperienceData();
+  if (typeof loadProjectsData === "function") loadProjectsData();
+  if (typeof loadCertificatesData === "function") loadCertificatesData();
 
   // Initialize experience display
-  updateExperienceCountdown();
-  setInterval(updateExperienceCountdown, 24 * 60 * 60 * 1000);
-
+  if (typeof updateExperienceCountdown === "function") {
+    updateExperienceCountdown();
+    setInterval(updateExperienceCountdown, 24 * 60 * 60 * 1000);
+  }
 });

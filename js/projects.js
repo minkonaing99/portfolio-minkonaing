@@ -10,13 +10,21 @@ async function loadProjectsData() {
   }
 }
 
-function displayProjects(projectsData) {
+function displayProjects(list) {
   const projectsGrid = document.getElementById("projects-grid");
   if (!projectsGrid) return;
 
+  // Home shows a curated set (grid marked data-featured); the projects
+  // page shows everything. Fall back to the full list if nothing is flagged.
+  let items = list;
+  if (projectsGrid.hasAttribute("data-featured")) {
+    const featured = list.filter((p) => p.featured);
+    items = (featured.length ? featured : list).slice(0, 3);
+  }
+
   projectsGrid.innerHTML = "";
 
-  projectsData.forEach((project, index) => {
+  items.forEach((project, index) => {
     const projectCard = document.createElement("article");
     projectCard.className = "project-card";
 

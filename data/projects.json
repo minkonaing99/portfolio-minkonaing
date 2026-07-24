@@ -1,5 +1,6 @@
 [
     {
+        "featured": true,
         "project_title": "Sales Management System",
         "description": "Full-stack system to track, analyze, and visualize sales performance using PHP, JS, and Aurora SQL. Integrated Gemini AI for automated sales commentary and deployed Telegram bot for sales input, reducing manual reporting by 60%.",
         "photo_dir": "project_images/digimium_newdesign1.png",
@@ -23,6 +24,7 @@
         ]
     },
     {
+        "featured": true,
         "project_title": "MerxyLab - Online Learning Platform",
         "description": "Full-featured e-learning platform with JWT auth, video processing via FFMPEG, image handling, quiz engine, and an anti-cheating exam system. Background tasks handled with Celery and Redis.",
         "photo_dir": "project_images/merxy_lab(1).png",
@@ -55,6 +57,7 @@
         ]
     },
     {
+        "featured": true,
         "project_title": "Student Management System",
         "description": "Student portal with role-based authentication, profile and database management, and a built-in blogging system for academic communication.",
         "photo_dir": "project_images/well_being_1.png",
