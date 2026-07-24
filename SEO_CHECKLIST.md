@@ -134,7 +134,7 @@
 
 Primary Keywords:
 
-- Full Stack Developer
+- Backend Developer
 - Web Developer Bangkok
 - React Developer Thailand
 - Laravel Developer
@@ -143,7 +143,7 @@ Primary Keywords:
 
 Long-tail Keywords:
 
-- Full Stack Developer Bangkok Thailand
+- Backend Developer Bangkok Thailand
 - React Laravel Developer Portfolio
 - Web Development Services Bangkok
 - Custom Web Application Development

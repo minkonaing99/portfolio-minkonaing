@@ -1,7 +1,7 @@
 {
-    "name": "Min Ko Naing - Full Stack Developer Portfolio",
+    "name": "Min Ko Naing - Backend Developer Portfolio",
     "short_name": "Min Ko Naing",
-    "description": "Full Stack Developer specializing in React, Laravel, PHP, and Python. Creating beautiful, functional web applications.",
+    "description": "Backend Developer specializing in Laravel, PHP, Python, and React. Creating reliable, functional web applications.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
