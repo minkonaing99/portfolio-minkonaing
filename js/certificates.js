@@ -1,76 +1,110 @@
+// Certificates as a chronological ledger: one lane per year, each cert a
+// marker on that year's axis. Static content is the fallback; GSAP only
+// choreographs the reveal.
+
+const CERT_MOTION_ON =
+  typeof window.gsap !== "undefined" &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 async function loadCertificatesData() {
   try {
     const response = await fetch("data/certificates.json");
     const certificates = await response.json();
-    displayCertificates(certificates);
+    renderCertificates(certificates);
   } catch (error) {
     console.error("Error loading certificates:", error);
   }
 }
 
-function displayCertificates(certificates) {
-  const certificatesTrack = document.getElementById("certificates-track");
-  if (!certificatesTrack) return;
+function renderCertificates(certificates) {
+  const root = document.getElementById("cert-ledger");
+  if (!root) return;
 
-  const certificateHTML = certificates
+  const byYear = {};
+  certificates.forEach((cert) => {
+    (byYear[cert.year] = byYear[cert.year] || []).push(cert);
+  });
+
+  const years = Object.keys(byYear).sort();
+  root.innerHTML = years.map((year) => laneHTML(year, byYear[year])).join("");
+
+  initCertMotion(root);
+}
+
+function laneHTML(year, items) {
+  const cells = items
     .map(
-      (certificate) => `
-      <a class="certificate-item" href="${certificate.url}" target="_blank" rel="noopener noreferrer">
-        <div class="certificate-meta">
-          <span class="certificate-issuer">${certificate.issurer}</span>
-          <span class="certificate-year">${certificate.year}</span>
-        </div>
-        <h3 class="certificate-title">${certificate.certificate}</h3>
-      </a>
-    `
+      (cert) => `
+      <a class="cert-item" href="${cert.url}" target="_blank" rel="noopener noreferrer">
+        <span class="cert-marker" aria-hidden="true"></span>
+        <span class="cert-item-body">
+          <span class="cert-item-title">${cert.certificate}</span>
+          <span class="cert-item-issuer">${cert.issurer}</span>
+          <span class="cert-item-verify">Verify ↗</span>
+        </span>
+      </a>`
     )
     .join("");
 
-  // Duplicate for seamless infinite scroll
-  certificatesTrack.innerHTML = certificateHTML + certificateHTML;
-
-  // Signal that DOM is ready for the carousel to start
-  document.dispatchEvent(new Event("certificates-loaded"));
+  return `
+    <div class="cert-lane">
+      <div class="cert-year">${year}</div>
+      <div class="cert-track">
+        <span class="cert-axis" aria-hidden="true"></span>
+        ${cells}
+      </div>
+    </div>`;
 }
 
-// Certificate carousel: delta-time based for consistent speed across all refresh rates
-(function initCertificateCarousel() {
-  const SPEED_PX_PER_SEC = 60; // pixels per second, frame-rate independent
-  const LERP_FACTOR = 0.08;    // higher = snappier hover pause/resume
+function initCertMotion(root) {
+  const lanes = root.querySelectorAll(".cert-lane");
+  if (!CERT_MOTION_ON) return;
 
-  let position = 0;
-  let currentSpeed = 0;        // eases in from 0 on start
-  let targetSpeed = SPEED_PX_PER_SEC;
-  let lastTime = null;
+  lanes.forEach((lane) => {
+    gsap.set(lane.querySelector(".cert-axis"), {
+      scaleX: 0,
+      transformOrigin: "left center",
+    });
+    gsap.set(lane.querySelectorAll(".cert-marker"), { scale: 0.2, autoAlpha: 0 });
+    gsap.set(lane.querySelectorAll(".cert-item-body"), { autoAlpha: 0, y: 12 });
+    gsap.set(lane.querySelector(".cert-year"), { autoAlpha: 0, x: -8 });
+  });
 
-  function startCarousel() {
-    const track = document.getElementById("certificates-track");
-    const container = document.querySelector(".certificates-scroll-container");
-    if (!track || !container) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const lane = entry.target;
 
-    container.addEventListener("mouseenter", () => { targetSpeed = 0; });
-    container.addEventListener("mouseleave", () => { targetSpeed = SPEED_PX_PER_SEC; });
+        gsap
+          .timeline()
+          .to(lane.querySelector(".cert-year"), {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power3.out",
+          })
+          .to(
+            lane.querySelector(".cert-axis"),
+            { scaleX: 1, duration: 0.7, ease: "power3.out" },
+            "<"
+          )
+          .to(
+            lane.querySelectorAll(".cert-marker"),
+            { scale: 1, autoAlpha: 1, stagger: 0.08, duration: 0.4, ease: "back.out(2)" },
+            "-=0.45"
+          )
+          .to(
+            lane.querySelectorAll(".cert-item-body"),
+            { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.5, ease: "power3.out" },
+            "<"
+          );
 
-    function tick(timestamp) {
-      if (lastTime === null) lastTime = timestamp;
-      const delta = Math.min((timestamp - lastTime) / 1000, 0.05); // seconds, capped to avoid jump on tab focus
-      lastTime = timestamp;
+        observer.unobserve(lane);
+      });
+    },
+    { threshold: 0.25, rootMargin: "0px 0px -40px 0px" }
+  );
 
-      currentSpeed += (targetSpeed - currentSpeed) * LERP_FACTOR;
-      position -= currentSpeed * delta;
-
-      const halfWidth = track.scrollWidth / 2;
-      if (Math.abs(position) >= halfWidth) {
-        position += halfWidth;
-      }
-
-      track.style.transform = `translateX(${position}px)`;
-      requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  // Start after certificates are injected into the DOM
-  document.addEventListener("certificates-loaded", startCarousel);
-})();
+  lanes.forEach((lane) => observer.observe(lane));
+}
