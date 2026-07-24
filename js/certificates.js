@@ -15,15 +15,13 @@ function displayCertificates(certificates) {
   const certificateHTML = certificates
     .map(
       (certificate) => `
-      <div class="certificate-item">
-        <div class="certificate-header">
-          <div class="certificate-info">
-            <h3 class="certificate-title">${certificate.certificate}</h3>
-            <p class="certificate-issuer">${certificate.issurer}</p>
-            <p class="certificate-year">${certificate.year}</p>
-          </div>
+      <a class="certificate-item" href="${certificate.url}" target="_blank" rel="noopener noreferrer">
+        <div class="certificate-meta">
+          <span class="certificate-issuer">${certificate.issurer}</span>
+          <span class="certificate-year">${certificate.year}</span>
         </div>
-      </div>
+        <h3 class="certificate-title">${certificate.certificate}</h3>
+      </a>
     `
     )
     .join("");
