@@ -1,7 +1,10 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   Base: design tokens + resets
+   Identity: dark instrument panel. Warm charcoal surfaces, warm light ink,
+   signal orange instrumentation. Archivo carries voice, Fragment Mono
+   carries data.
+   ========================================================================== */
 
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,16 +12,79 @@
 }
 
 :root {
-    --primary-color: #0f1419;
-    --secondary-color: #38bdf8;
-    --secondary-dark: #0ea5e9;
-    --text-color: #f8fafc;
+    /* Surfaces (warm hue 40, near-neutral chroma) */
+    --panel-0: oklch(0.16 0.008 40);
+    --panel-1: oklch(0.19 0.009 40);
+    --panel-2: oklch(0.23 0.01 40);
+    --panel-3: oklch(0.27 0.012 40);
+
+    /* Lines */
+    --line-0: oklch(0.26 0.01 40);
+    --line-1: oklch(0.33 0.012 40);
+
+    /* Ink */
+    --ink-1: oklch(0.93 0.008 40);
+    --ink-2: oklch(0.72 0.015 40);
+    --ink-3: oklch(0.56 0.015 40);
+
+    /* Signal (international orange) */
+    --signal: oklch(0.68 0.18 40);
+    --signal-strong: oklch(0.74 0.17 45);
+    --signal-dim: oklch(0.58 0.16 40);
+    --signal-tint: oklch(0.25 0.045 40);
+
+    /* Status */
+    --ok: oklch(0.75 0.13 150);
+
+    /* Typography */
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'Fragment Mono', 'Courier New', monospace;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.25rem;
+    --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3.25rem);
+    --text-display: clamp(3rem, 1.8rem + 6vw, 6.75rem);
+
+    --tracking-tight: -0.02em;
+    --tracking-wide: 0.08em;
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+    --space-section: clamp(4rem, 2rem + 8vw, 9rem);
+
+    /* Shape: instrument panels are near-sharp */
+    --radius-1: 2px;
+    --radius-2: 6px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 150ms;
+    --duration-base: 300ms;
+    --duration-slow: 600ms;
+
     --container-width: 1400px;
-    --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
-    --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+
+    /* Legacy aliases (pre-redesign CSS still reads these) */
+    --primary-color: var(--panel-1);
+    --secondary-color: var(--signal);
+    --secondary-dark: var(--signal-dim);
+    --text-color: var(--ink-1);
+    --font-heading: var(--font-display);
 }
 
-/* Apply Space Grotesk to all headings */
+/* Headings */
 h1,
 h2,
 h3,
@@ -32,17 +98,39 @@ h4,
 .cta-item h3,
 .footer-logo span,
 .modal-header h3 {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
+    letter-spacing: var(--tracking-tight);
 }
 
 body {
-    font-family: 'DM Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    color: var(--ink-1);
+    background-color: var(--panel-1);
     overflow-x: hidden;
-    background-color: var(--primary-color);
-    /* Optimize for smooth scrolling */
-    will-change: scroll-position;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: var(--signal);
+    color: var(--panel-0);
+}
+
+:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

@@ -72,7 +72,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--secondary-color), #0ea5e9);
+    background: linear-gradient(90deg, var(--secondary-color), var(--signal-dim));
     transition: width 0.3s ease;
 }
 
@@ -87,7 +87,7 @@
 
 /* Button Styles */
 .cta-button {
-    background: linear-gradient(135deg, var(--secondary-color), #0ea5e9);
+    background: linear-gradient(135deg, var(--secondary-color), var(--signal-dim));
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -106,7 +106,7 @@
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    background: linear-gradient(135deg, var(--signal), var(--signal-dim));
 }
 
 .cta-button i {
@@ -369,7 +369,7 @@
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, var(--secondary-color), #0ea5e9);
+    background: linear-gradient(135deg, var(--secondary-color), var(--signal-dim));
     color: white;
     box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
 }
@@ -377,7 +377,7 @@
 .primary-btn:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 12px 35px rgba(56, 189, 248, 0.4);
-    background: linear-gradient(135deg, #0ea5e9, var(--secondary-color));
+    background: linear-gradient(135deg, var(--signal-dim), var(--secondary-color));
 }
 
 .secondary-btn {
@@ -563,7 +563,7 @@
 }
 
 .hero-cta {
-    background: linear-gradient(135deg, var(--secondary-color), #0ea5e9);
+    background: linear-gradient(135deg, var(--secondary-color), var(--signal-dim));
     color: white;
     border: none;
     padding: 0.7rem 1.5rem;
@@ -584,7 +584,7 @@
 .hero-cta:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 12px 35px rgba(56, 189, 248, 0.4);
-    background: linear-gradient(135deg, #0ea5e9, var(--secondary-color));
+    background: linear-gradient(135deg, var(--signal-dim), var(--secondary-color));
 }
 
 /* Scroll state */

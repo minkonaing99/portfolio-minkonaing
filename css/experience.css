@@ -95,7 +95,7 @@
 }
 
 .experience-item:hover::before {
-    background: #0ea5e9;
+    background: var(--signal-dim);
     box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.3);
 }
 
