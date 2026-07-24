@@ -17,60 +17,53 @@ function displayProjects(projectsData) {
   projectsGrid.innerHTML = "";
 
   projectsData.forEach((project, index) => {
-    const projectCard = document.createElement("div");
+    const projectCard = document.createElement("article");
     projectCard.className = "project-card";
 
-    const technologiesList = project.technologies
-      ? project.technologies.map((tech) => `<span class="technology-tag">${tech}</span>`).join("")
-      : "";
+    const hasShowcase = project.showcase && project.showcase.length > 0;
+    const hasRepo =
+      project.github_repo && project.github_repo !== "https://github.com/yourusername/";
+    const techLine = project.technologies ? project.technologies.join(" · ") : "";
+    const indexLabel = String(index + 1).padStart(2, "0");
+
+    const imageTag = hasShowcase
+      ? `<button class="project-image view-project-btn" data-project="${project.project_title}"
+          aria-label="View ${project.project_title} screenshots">
+          <img src="${project.photo_dir}" alt="${project.alt}" loading="lazy">
+        </button>`
+      : `<div class="project-image" data-static>
+          <img src="${project.photo_dir}" alt="${project.alt}" loading="lazy">
+        </div>`;
 
     projectCard.innerHTML = `
-      <div class="project-image">
-        <img src="${project.photo_dir}" alt="${project.alt}" loading="lazy">
-        <div class="project-image-overlay">
-          <div class="project-overlay-buttons">
-            ${project.showcase && project.showcase.length > 0
-              ? `<a href="#" class="project-overlay-btn view-project-btn" data-project="${project.project_title}">
-                  <i class="fas fa-eye"></i><span>View</span>
-                </a>`
-              : ""}
-            ${project.github_repo && project.github_repo !== "https://github.com/yourusername/"
-              ? `<a href="#" class="project-overlay-btn view-code-btn" data-project="${project.project_title}" data-repo="${project.github_repo}">
-                  <i class="fas fa-code"></i><span>Code</span>
-                </a>`
-              : ""}
-          </div>
-        </div>
-      </div>
+      ${imageTag}
       <div class="project-content">
-        <h3 class="project-title">${project.project_title}</h3>
+        <div class="project-head">
+          <span class="project-index">${indexLabel}</span>
+          <h3 class="project-title">${project.project_title}</h3>
+        </div>
         <p class="project-description">${project.description}</p>
-        <div class="project-technologies">${technologiesList}</div>
+        <p class="project-tech">${techLine}</p>
+        <div class="project-links">
+          ${hasShowcase
+            ? `<button class="project-link view-project-btn" data-project="${project.project_title}">Screenshots</button>`
+            : ""}
+          ${hasRepo
+            ? `<a class="project-link" href="${project.github_repo}" target="_blank" rel="noopener noreferrer">Source ↗</a>`
+            : ""}
+        </div>
       </div>
     `;
 
     projectsGrid.appendChild(projectCard);
 
-    const viewBtn = projectCard.querySelector(".view-project-btn");
-    const codeBtn = projectCard.querySelector(".view-code-btn");
-
-    if (viewBtn) {
-      viewBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        viewProject(viewBtn.dataset.project);
-      });
-    }
-
-    if (codeBtn) {
-      codeBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        viewCode(codeBtn.dataset.project, codeBtn.dataset.repo);
-      });
-    }
+    projectCard.querySelectorAll(".view-project-btn").forEach((btn) => {
+      btn.addEventListener("click", () => viewProject(btn.dataset.project));
+    });
 
     setTimeout(() => {
       projectCard.classList.add("animate-in");
-    }, index * 200);
+    }, index * 120);
   });
 
   enhanceProjectImageLazyLoading();
@@ -83,15 +76,6 @@ function viewProject(projectTitle) {
     showProjectModal(project);
   } else {
     showNotification(`Showcase images coming soon for ${projectTitle}`, "#f39c12");
-  }
-}
-
-function viewCode(projectTitle, githubRepo) {
-  if (githubRepo && githubRepo !== "https://github.com/yourusername/") {
-    window.open(githubRepo, "_blank");
-    showNotification(`Opening ${projectTitle} repository...`, "var(--secondary-color)");
-  } else {
-    showNotification(`GitHub repository coming soon for ${projectTitle}`, "#f39c12");
   }
 }
 
@@ -136,8 +120,7 @@ function showProjectModal(project) {
       this.style.display = "none";
       showcaseDiv.innerHTML = `
         <div style="display:flex;align-items:center;justify-content:center;min-height:300px;
-          background:rgba(255,255,255,0.05);border-radius:15px;
-          color:rgba(255,255,255,0.6);font-style:italic;">
+          color:var(--ink-3);font-family:var(--font-mono);font-size:0.75rem;">
           Image not available: ${imageName}
         </div>`;
       showcaseDiv.classList.remove("loading");
