@@ -142,6 +142,12 @@
     gap: var(--space-3);
 }
 
+.projects-more-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--signal);
+}
+
 /* Standalone projects page */
 .projects-page {
     padding-top: calc(var(--nav-h) + var(--space-12));
