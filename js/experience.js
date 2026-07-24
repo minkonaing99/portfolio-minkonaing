@@ -35,8 +35,6 @@ function displayExperience(experienceData) {
 
     timeline.appendChild(experienceItem);
 
-    setTimeout(() => {
-      experienceItem.classList.add("animate-in");
-    }, index * 120);
+    if (window.revealOnScroll) window.revealOnScroll(experienceItem);
   });
 }

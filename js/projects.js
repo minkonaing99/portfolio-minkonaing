@@ -61,9 +61,7 @@ function displayProjects(projectsData) {
       btn.addEventListener("click", () => viewProject(btn.dataset.project));
     });
 
-    setTimeout(() => {
-      projectCard.classList.add("animate-in");
-    }, index * 120);
+    if (window.revealOnScroll) window.revealOnScroll(projectCard);
   });
 
   enhanceProjectImageLazyLoading();

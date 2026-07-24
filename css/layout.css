@@ -90,7 +90,13 @@
     cursor: pointer;
     transition: background var(--duration-fast) var(--ease-out),
         border-color var(--duration-fast) var(--ease-out),
-        color var(--duration-fast) var(--ease-out);
+        color var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:active,
+.cta-button:active {
+    transform: scale(0.97);
 }
 
 .btn-primary,
@@ -150,6 +156,36 @@
     max-width: var(--container-width);
     margin: 0 auto;
     width: 100%;
+    position: relative;
+}
+
+/* Instrument dial */
+.hero-figure {
+    position: absolute;
+    right: var(--space-2);
+    top: clamp(4rem, 9vh, 6rem);
+    width: min(270px, 19vw);
+    pointer-events: none;
+}
+
+.hero-figure svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.dial-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    fill: var(--ink-3);
+    text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+    .hero-figure {
+        display: none;
+    }
 }
 
 .hero-meta {
@@ -206,6 +242,15 @@
     line-height: 0.94;
     letter-spacing: var(--tracking-tight);
     color: var(--ink-1);
+}
+
+.hero-line {
+    display: block;
+    overflow: hidden;
+}
+
+.hero-line-inner {
+    display: inline-block;
 }
 
 .hero-title-signal {
