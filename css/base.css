@@ -25,7 +25,7 @@
     /* Ink */
     --ink-1: oklch(0.93 0.008 40);
     --ink-2: oklch(0.72 0.015 40);
-    --ink-3: oklch(0.56 0.015 40);
+    --ink-3: oklch(0.62 0.015 40);
 
     /* Signal (international orange) */
     --signal: oklch(0.68 0.18 40);

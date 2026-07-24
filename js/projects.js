@@ -75,7 +75,7 @@ function viewProject(projectTitle) {
   if (project && project.showcase && project.showcase.length > 0) {
     showProjectModal(project);
   } else {
-    showNotification(`Showcase images coming soon for ${projectTitle}`, "#f39c12");
+    showNotification(`Showcase images coming soon for ${projectTitle}`);
   }
 }
 

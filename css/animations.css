@@ -121,12 +121,6 @@ body.loaded {
 .stagger-animate:nth-child(9)  { transition-delay: 0.9s; }
 .stagger-animate:nth-child(10) { transition-delay: 1s; }
 
-/* Enhanced hover for revealed elements */
-.scroll-animate.animate-in:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-}
-
 /* Loading states */
 .scroll-animate:not(.animate-in) {
     pointer-events: none;

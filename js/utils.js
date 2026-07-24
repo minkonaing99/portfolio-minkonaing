@@ -1,24 +1,21 @@
-function showNotification(message, background = "var(--secondary-color)", duration = 3000) {
+function showNotification(message, background = "var(--panel-3)", duration = 3000) {
   const notification = document.createElement("div");
   notification.style.cssText = `
     position: fixed;
     top: 20px;
     right: 20px;
     background: ${background};
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    color: var(--ink-1);
+    border: 1px solid var(--line-1);
+    padding: 0.75rem 1.25rem;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     z-index: 10000;
-    transform: translateX(400px);
-    transition: transform 0.3s ease;
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   `;
-  notification.innerHTML = `
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <i class="fas fa-info-circle"></i>
-      <span>${message}</span>
-    </div>
-  `;
+  notification.innerHTML = `<span>${message}</span>`;
 
   document.body.appendChild(notification);
   setTimeout(() => { notification.style.transform = "translateX(0)"; }, 100);
@@ -30,7 +27,7 @@ function showNotification(message, background = "var(--secondary-color)", durati
 
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text).then(function () {
-    showNotification("Email copied to clipboard!", "var(--secondary-color)");
+    showNotification("Email copied to clipboard");
   }).catch(function (err) {
     console.error("Could not copy text:", err);
   });
