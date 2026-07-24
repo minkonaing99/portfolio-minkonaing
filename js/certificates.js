@@ -33,17 +33,24 @@ function renderCertificates(certificates) {
 
 function laneHTML(year, items) {
   const cells = items
-    .map(
-      (cert) => `
-      <a class="cert-item" href="${cert.url}" target="_blank" rel="noopener noreferrer">
+    .map((cert) => {
+      const tag = cert.url ? "a" : "div";
+      const attrs = cert.url
+        ? ` href="${cert.url}" target="_blank" rel="noopener noreferrer"`
+        : "";
+      const verify = cert.url
+        ? `<span class="cert-item-verify">Verify ↗</span>`
+        : "";
+      return `
+      <${tag} class="cert-item"${attrs}>
         <span class="cert-marker" aria-hidden="true"></span>
         <span class="cert-item-body">
           <span class="cert-item-title">${cert.certificate}</span>
           <span class="cert-item-issuer">${cert.issurer}</span>
-          <span class="cert-item-verify">Verify ↗</span>
+          ${verify}
         </span>
-      </a>`
-    )
+      </${tag}>`;
+    })
     .join("");
 
   return `

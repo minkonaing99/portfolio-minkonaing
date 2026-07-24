@@ -1,5 +1,26 @@
 [
     {
+        "certificate": "Programming in Python",
+        "issurer": "Meta / Coursera",
+        "year": "2026",
+        "url": "https://coursera.org/verify/MEFMWSUZCTXP"
+    },
+    {
+        "certificate": "Claude Code in Action",
+        "issurer": "Anthropic",
+        "year": "2026"
+    },
+    {
+        "certificate": "Claude 101",
+        "issurer": "Anthropic",
+        "year": "2026"
+    },
+    {
+        "certificate": "AWS AI Practitioner Challenge",
+        "issurer": "Udacity",
+        "year": "2026"
+    },
+    {
         "certificate": "Meta Front-End Developer",
         "issurer": "Coursera",
         "year": "2025",
