@@ -6,8 +6,6 @@ function initAllScrollAnimations() {
     .certificate-item,
     .platform-card,
     .detail-item,
-    .feature-item,
-    .bento-item,
     .about-image,
     .about-text,
     .section-header,

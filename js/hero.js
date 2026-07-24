@@ -30,22 +30,3 @@ function updateExperienceCountdown() {
 
   el.textContent = text;
 }
-
-
-// CTA button ripple effect
-document.addEventListener("DOMContentLoaded", () => {
-  const ctaButton = document.querySelector(".cta-button");
-  if (ctaButton) {
-    ctaButton.addEventListener("click", (e) => {
-      const ripple = document.createElement("span");
-      const rect = ctaButton.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      ripple.style.width = ripple.style.height = size + "px";
-      ripple.style.left = e.clientX - rect.left - size / 2 + "px";
-      ripple.style.top = e.clientY - rect.top - size / 2 + "px";
-      ripple.classList.add("ripple");
-      ctaButton.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 600);
-    });
-  }
-});

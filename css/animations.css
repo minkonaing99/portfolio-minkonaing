@@ -1,7 +1,7 @@
 /* Enhanced Smooth Scrolling */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 70px;
+    scroll-padding-top: var(--nav-h, 64px);
 }
 
 body {
@@ -38,50 +38,6 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* ── Nav entrance animations ─────────────────────── */
-.nav-logo {
-    animation: slideInRight 0.6s ease;
-}
-
-.nav-menu {
-    animation: fadeInUp 0.6s ease 0.2s both;
-}
-
-.nav-button {
-    animation: slideInRight 0.6s ease 0.4s both;
-}
-
-/* Active link styles */
-.nav-link.active {
-    color: var(--secondary-color);
-}
-
-.nav-link.active::after {
-    width: 100%;
-}
-
-/* Ripple effect for button */
-.cta-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-    pointer-events: none;
 }
 
 /* Page loading fade-in */
@@ -193,10 +149,7 @@ body.loaded {
 .about-image .image-container,
 .section-header,
 .hero-title,
-.hero-subtitle,
-.hero-description,
 .hero-actions a,
-.bento-box,
 .footer-brand,
 .footer-links>div {
     will-change: transform, opacity;
