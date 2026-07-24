@@ -40,7 +40,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: var(--space-6);
-    padding-top: var(--space-6);
+    padding-top: 0;
 }
 
 .cert-axis {
@@ -55,7 +55,7 @@
 /* ── Item ───────────────────────────────────────── */
 .cert-item {
     position: relative;
-    padding-top: var(--space-5);
+    padding-top: var(--space-8);
     text-decoration: none;
 }
 
