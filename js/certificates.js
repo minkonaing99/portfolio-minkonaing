@@ -25,7 +25,7 @@ function renderCertificates(certificates) {
     (byYear[cert.year] = byYear[cert.year] || []).push(cert);
   });
 
-  const years = Object.keys(byYear).sort();
+  const years = Object.keys(byYear).sort((a, b) => b.localeCompare(a));
   root.innerHTML = years.map((year) => laneHTML(year, byYear[year])).join("");
 
   initCertMotion(root);
