@@ -123,30 +123,6 @@
         ]
     },
     {
-        "project_title": "Sales Management System + Telegram Bot",
-        "description": "Full-stack system to track, analyze, and visualize sales performance using PHP, JS, and Aurora SQL. Integrated Gemini AI for automated sales commentary and deployed Telegram bot for sales input, reducing manual reporting by 60%.",
-        "photo_dir": "project_images/dashboard_digimium.png",
-        "alt": "sales management ai insights",
-        "showcase": [
-            "dashboard_digimium.png",
-            "dashboard_digimium1.png",
-            "dashboard_digimium2.png",
-            "dashboard_digimium3.png",
-            "dashboard_digimium4.png"
-        ],
-        "technologies": [
-            "Python",
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "PHP",
-            "MySQL",
-            "Gemini API",
-            "AWS EC2",
-            "Amazon Aurora"
-        ]
-    },
-    {
         "project_title": "Digimium Website",
         "description": "E-commerce website showcasing store items with animations. Includes admin panel for adding, editing, and deleting products, using JSON for data management.",
         "photo_dir": "project_images/digimium.store.png",
@@ -159,6 +135,140 @@
             "CSS",
             "JavaScript",
             "AWS EC2"
+        ]
+    },
+    {
+        "project_title": "MerxyLab Store",
+        "description": "Production e-commerce storefront and back office for a Myanmar computer-peripheral store, with server-priced checkout, payment-slip verification, inventory controls, bilingual content, and role-gated administration.",
+        "photo_dir": "project_images/store-merxylab-01.png",
+        "alt": "MerxyLab Store storefront",
+        "github_repo": "https://github.com/minkonaing99/store.merxylab",
+        "live_url": "https://store.merxylab.com",
+        "showcase": [
+            "store-merxylab-01.png",
+            "store-merxylab-02.png",
+            "store-merxylab-03.png",
+            "store-merxylab-04.png",
+            "store-merxylab-05.png",
+            "store-merxylab-06.png",
+            "store-merxylab-07.png"
+        ],
+        "technologies": [
+            "TypeScript",
+            "Next.js 15",
+            "React 19",
+            "Tailwind CSS",
+            "Drizzle ORM",
+            "MySQL",
+            "Cloudflare R2",
+            "Vitest"
+        ]
+    },
+    {
+        "project_title": "Xpenses",
+        "description": "Mobile-first personal finance PWA for accounts, budgets, recurring transactions, reports, offline changes, spending forecasts, and optional MCP access.",
+        "alt": "Xpenses image coming soon",
+        "github_repo": "https://github.com/minkonaing99/xpenses.merxylab",
+        "image_placeholder": true,
+        "technologies": [
+            "TypeScript",
+            "React",
+            "Vite",
+            "Node.js",
+            "Express.js",
+            "MySQL",
+            "TanStack Query",
+            "MCP"
+        ]
+    },
+    {
+        "project_title": "Link Nest",
+        "description": "Private link library with session and token authentication, automatic title fetching, search and filtering, tags, bulk actions, soft deletion, and a sync-ready JSON API.",
+        "alt": "Link Nest image coming soon",
+        "github_repo": "https://github.com/minkonaing99/Link-Vault",
+        "image_placeholder": true,
+        "technologies": [
+            "Node.js",
+            "MongoDB",
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "JWT",
+            "bcryptjs"
+        ]
+    },
+    {
+        "project_title": "MerxyLab Messenger Chatbot",
+        "description": "Facebook Messenger sales assistant grounded in store knowledge, with bilingual replies, guided ordering, delivery-fee detection, Redis cooldowns, and Telegram human handoff.",
+        "photo_dir": "project_images/merxylab-messenger-chatbot.png",
+        "alt": "MerxyLab Messenger Chatbot conversation and admin handoff interface",
+        "github_repo": "https://github.com/minkonaing99/messengerchatbot.merxylab",
+        "showcase": [
+            "merxylab-messenger-chatbot.png"
+        ],
+        "technologies": [
+            "Node.js",
+            "Express.js",
+            "Anthropic Claude",
+            "Upstash Redis",
+            "Messenger Platform",
+            "Telegram Bot API",
+            "Render"
+        ]
+    },
+    {
+        "project_title": "SplitLedger",
+        "description": "Private finance PWA separating shared business transactions from per-user personal ledgers, with server-side sessions, audit logging, monthly reports, and CSV export.",
+        "photo_dir": "project_images/splitledger-home.png",
+        "alt": "SplitLedger home dashboard with monthly snapshot and recent transactions",
+        "github_repo": "https://github.com/minkonaing99/SplitLedger",
+        "showcase": [
+            "splitledger-home.png",
+            "splitledger-personal.png",
+            "splitledger-add-transaction.png",
+            "splitledger-reports.png"
+        ],
+        "technologies": [
+            "TypeScript",
+            "Next.js 15",
+            "Tailwind CSS",
+            "Node.js",
+            "MySQL",
+            "PWA"
+        ]
+    },
+    {
+        "project_title": "NoctAgent",
+        "description": "Local macOS menu-bar app that reads Claude Code status-line data to show usage limits, reset times, context usage, and running agents without an API key or network access.",
+        "photo_dir": "project_images/noctagent-usage.png",
+        "alt": "NoctAgent settings window with usage display and agent notification controls",
+        "github_repo": "https://github.com/minkonaing99/nochagent-macos",
+        "showcase": [
+            "noctagent-usage.png",
+            "noctagent-settings.png"
+        ],
+        "technologies": [
+            "Swift",
+            "SwiftUI",
+            "AppKit",
+            "Swift Package Manager"
+        ]
+    },
+    {
+        "project_title": "LookAway",
+        "description": "macOS menu-bar break reminder with customizable schedules, 20-20-20 and Pomodoro modes, rest overlays, calendar-aware delays, focus blocks, and local statistics.",
+        "photo_dir": "project_images/lookaway-cover.png",
+        "alt": "LookAway macOS break reminder showing schedule controls and rest overlay",
+        "github_repo": "https://github.com/minkonaing99/lookaway-macos",
+        "showcase": [
+            "lookaway-cover.png"
+        ],
+        "technologies": [
+            "Swift",
+            "SwiftUI",
+            "AppKit",
+            "EventKit",
+            "Xcode"
         ]
     }
 ]

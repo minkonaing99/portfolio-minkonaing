@@ -9,10 +9,10 @@
 }
 
 :root {
-    --primary-color: #0f1419;
-    --secondary-color: #38bdf8;
-    --secondary-dark: #0ea5e9;
-    --text-color: #f8fafc;
+    --primary-color: oklch(18.4% 0.005 145.4);
+    --secondary-color: oklch(69.3% 0.138 43.1);
+    --secondary-dark: oklch(60.4% 0.142 40.2);
+    --text-color: oklch(95.8% 0.009 113.2);
     --container-width: 1400px;
     --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
     --font-body: 'DM Sans', 'Segoe UI', sans-serif;
