@@ -8,7 +8,7 @@ function showNotification(message, background = "var(--secondary-color)", durati
     color: var(--primary-color);
     padding: 1rem 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(7,9,7,0.3);
+    box-shadow: 0 10px 30px rgba(var(--shadow-rgb),0.3);
     z-index: 10000;
     transform: translateX(400px);
     transition: transform 0.3s ease;

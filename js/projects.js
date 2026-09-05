@@ -222,12 +222,12 @@ function viewProject(projectTitle) {
     showProjectModal(project);
     return;
   }
-  showNotification(`Showcase images coming soon for ${projectTitle}`, "#e3b341");
+  showNotification(`Showcase images coming soon for ${projectTitle}`, "var(--secondary-color)");
 }
 
 function viewCode(projectTitle, githubRepo) {
   if (!isAllowedGitHubUrl(githubRepo)) {
-    showNotification(`GitHub repository coming soon for ${projectTitle}`, "#e3b341");
+    showNotification(`GitHub repository coming soon for ${projectTitle}`, "var(--secondary-color)");
     return;
   }
 
@@ -282,7 +282,7 @@ function createShowcaseImage(project, imageName, index) {
 
 function showImageError(container, imageName) {
   const message = document.createElement("div");
-  message.style.cssText = "display:flex;align-items:center;justify-content:center;min-height:300px;background:rgba(241,242,235,0.05);border-radius:15px;color:rgba(241,242,235,0.65);font-style:italic";
+  message.style.cssText = "display:flex;align-items:center;justify-content:center;min-height:300px;background:rgba(var(--text-rgb),0.05);border-radius:15px;color:rgba(var(--text-rgb),0.65);font-style:italic";
   message.textContent = `Image not available: ${imageName}`;
   container.replaceChildren(message);
   container.classList.remove("loading");

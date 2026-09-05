@@ -4,8 +4,8 @@
     "description": "Backend developer building APIs, AI automations, and reliable services with Node.js, Express.js, JavaScript, Python, SQL, MongoDB, and AWS.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#111311",
-    "theme_color": "#111311",
+    "background_color": "#1b1c26",
+    "theme_color": "#1b1c26",
     "orientation": "portrait-primary",
     "scope": "/",
     "lang": "en",
@@ -65,7 +65,6 @@
         }
     ]
 }
-
 
 
 

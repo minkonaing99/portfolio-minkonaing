@@ -1,6 +1,6 @@
 /* Footer Section Styles */
 .footer-section {
-    background: linear-gradient(135deg, rgba(17, 19, 17, 0.95) 0%, rgba(226, 125, 82, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(var(--background-rgb), 0.95) 0%, rgba(var(--accent-rgb), 0.05) 100%);
     color: var(--text-color);
     padding: 4rem 0 0 0;
     position: relative;
@@ -52,7 +52,7 @@
 }
 
 .footer-description {
-    color: rgba(241, 242, 235, 0.8);
+    color: rgba(var(--text-rgb), 0.8);
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -68,12 +68,12 @@
     justify-content: center;
     width: 45px;
     height: 45px;
-    background: rgba(241, 242, 235, 0.1);
+    background: rgba(var(--text-rgb), 0.1);
     border-radius: 12px;
     color: var(--text-color);
     font-size: 1.2rem;
     transition: all 0.3s ease;
-    border: 1px solid rgba(241, 242, 235, 0.1);
+    border: 1px solid rgba(var(--text-rgb), 0.1);
     text-decoration: none;
 }
 
@@ -81,7 +81,7 @@
     background: var(--secondary-color);
     color: var(--primary-color);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(226, 125, 82, 0.24);
+    box-shadow: 0 10px 25px rgba(var(--accent-rgb), 0.24);
 }
 
 .footer-links {
@@ -123,7 +123,7 @@
 }
 
 .footer-column ul li a {
-    color: rgba(241, 242, 235, 0.8);
+    color: rgba(var(--text-rgb), 0.8);
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 0.9rem;
@@ -148,7 +148,7 @@
     overflow-wrap: break-word;
     word-break: break-word;
     min-width: 0;
-    color: rgba(241, 242, 235, 0.7);
+    color: rgba(var(--text-rgb), 0.7);
     font-size: 0.9rem;
     line-height: 1.5;
 }
