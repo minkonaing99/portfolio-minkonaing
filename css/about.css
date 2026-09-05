@@ -152,7 +152,7 @@
 
 .detail-item span {
     font-size: 0.875rem;
-    color: rgba(var(--text-rgb), 0.6);
+    color: var(--text-color);
     font-weight: 400;
 }
 

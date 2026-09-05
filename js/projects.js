@@ -3,6 +3,14 @@ let activeModalTrigger = null;
 
 const PROJECT_IMAGE_PATTERN = /^project_images\/[a-zA-Z0-9._() -]+\.(png|jpe?g|webp|gif)$/i;
 const SHOWCASE_IMAGE_PATTERN = /^[a-zA-Z0-9._() -]+\.(png|jpe?g|webp|gif)$/i;
+const PROJECT_PRIORITY = Object.freeze([
+  "MerxyLab Store",
+  "MerxyLab Messenger Chatbot",
+  "MerxyLab - Online Learning Platform",
+  "Student Management System",
+  "Sales Management System",
+]);
+const FEATURED_PROJECT_COUNT = PROJECT_PRIORITY.length;
 
 async function loadProjectsData() {
   try {
@@ -87,6 +95,19 @@ function normalizeProject(project) {
   };
 }
 
+function orderProjects(projects) {
+  const ranks = new Map(PROJECT_PRIORITY.map((title, index) => [title, index]));
+  return projects
+    .map((project, index) => ({ project, index, rank: ranks.get(project.project_title) }))
+    .sort((left, right) => {
+      if (left.rank !== undefined || right.rank !== undefined) {
+        return (left.rank ?? PROJECT_PRIORITY.length) - (right.rank ?? PROJECT_PRIORITY.length);
+      }
+      return right.index - left.index;
+    })
+    .map(({ project }) => project);
+}
+
 function displayProjects(projects) {
   const featured = document.getElementById("featured-projects");
   const ledger = document.getElementById("project-ledger");
@@ -94,12 +115,12 @@ function displayProjects(projects) {
   const empty = document.getElementById("projects-empty");
   if (!featured || !ledger || !count || !empty) return;
 
-  const orderedProjects = [...projects].reverse();
-  featured.replaceChildren(...orderedProjects.slice(0, 4).map(createFeaturedCase));
-  ledger.replaceChildren(...orderedProjects.slice(4).map(createProjectRow));
+  const orderedProjects = orderProjects(projects);
+  featured.replaceChildren(...orderedProjects.slice(0, FEATURED_PROJECT_COUNT).map(createFeaturedCase));
+  ledger.replaceChildren(...orderedProjects.slice(FEATURED_PROJECT_COUNT).map(createProjectRow));
   count.textContent = `${orderedProjects.length} projects`;
   empty.hidden = orderedProjects.length > 0;
-  document.querySelector(".project-ledger-heading")?.toggleAttribute("hidden", orderedProjects.length <= 4);
+  document.querySelector(".project-ledger-heading")?.toggleAttribute("hidden", orderedProjects.length <= FEATURED_PROJECT_COUNT);
   enhanceProjectImageLazyLoading();
   revealProjectCatalog();
 }
@@ -148,7 +169,7 @@ function createProjectRow(project, index) {
   panel.className = "project-row-panel";
   panelInner.className = "project-row-panel-inner";
   copy.className = "project-row-copy";
-  number.textContent = String(index + 5).padStart(2, "0");
+  number.textContent = String(index + FEATURED_PROJECT_COUNT + 1).padStart(2, "0");
   title.textContent = project.project_title;
   description.textContent = project.description;
   toggle.setAttribute("aria-hidden", "true");

@@ -3,54 +3,63 @@
         "certificate": "Meta Front-End Developer",
         "issurer": "Coursera",
         "year": "2025",
+        "provider": "meta",
         "url": "https://coursera.org/verify/professional-cert/META-FRONTEND"
     },
     {
         "certificate": "Meta Back-End Developer",
         "issurer": "Coursera",
         "year": "2025",
+        "provider": "meta",
         "url": "https://coursera.org/verify/professional-cert/META-BACKEND"
     },
     {
         "certificate": "Python for Everybody",
         "issurer": "Coursera",
         "year": "2024",
+        "provider": "coursera",
         "url": "https://coursera.org/verify/specialization/PYTHON-EVERYBODY"
     },
     {
         "certificate": "MikroTik Certified Network Associate",
         "issurer": "MikroTik",
         "year": "2023",
+        "provider": "mikrotik",
         "url": "https://mikrotik.com/certificates?search=2309NA3560"
     },
     {
         "certificate": "Google Cybersecurity Professional",
         "issurer": "Google / Coursera",
         "year": "2024",
+        "provider": "google",
         "url": "https://coursera.org/verify/professional-cert/9NIYUHZ4GMG3"
     },
     {
         "certificate": "Codelab Web Development",
         "issurer": "Codelab",
         "year": "2023",
+        "provider": "codelab",
         "url": "https://codelab.com/certificates"
     },
     {
         "certificate": "IELTS",
         "issurer": "British Council",
         "year": "2025",
+        "provider": "british-council",
         "url": "https://ielts.org/verify"
     },
     {
         "certificate": "Programming with JavaScript",
         "issurer": "Meta / Coursera",
         "year": "2025",
+        "provider": "meta",
         "url": "https://coursera.org/verify/X7AQM435GMTN"
     },
     {
         "certificate": "Tools of the Trade: Linux and SQL",
         "issurer": "Google / Coursera",
         "year": "2024",
+        "provider": "google",
         "url": "https://coursera.org/verify/GN35R4D6K4WJ"
     }
 ]

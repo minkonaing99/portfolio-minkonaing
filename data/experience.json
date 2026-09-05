@@ -1,5 +1,16 @@
 [
     {
+        "position": "Backend Developer",
+        "company": "Forgeloop | Remote",
+        "duration": "March 2026 - July 2026",
+        "responsibilities": [
+            "Maintained and extended APIs to support new product features and changing requirements.",
+            "Administered databases and managed application and environment configuration.",
+            "Configured and maintained AWS infrastructure and Vultr VPS deployments.",
+            "Migrated application data from the existing SQL database to PostgreSQL."
+        ]
+    },
+    {
         "position": "Freelance Web Developer",
         "company": "Remote",
         "duration": "May 2024 - Present",

@@ -247,12 +247,38 @@ const context = vm.createContext({
 vm.runInContext(`${source}
 globalThis.projectTestApi = {
   cleanText, isAllowedGitHubUrl, isAllowedLiveUrl, normalizeProject,
-  loadProjectsData, displayProjects, createProjectMedia, createProjectActions,
+  loadProjectsData, orderProjects, displayProjects, createProjectMedia, createProjectActions,
   createAction, showProjectModal, showImageError, closeProjectModal,
   trapModalFocus, enhanceProjectImageLazyLoading, revealProjectCatalog,
 };`, context, { filename: new URL("../js/projects.js", import.meta.url).pathname });
 
 const api = context.projectTestApi;
+
+test("priority projects lead in requested order while remaining work stays newest first", () => {
+  const projects = [
+    "Sales Management System",
+    "MerxyLab - Online Learning Platform",
+    "Student Management System",
+    "Older project",
+    "MerxyLab Messenger Chatbot",
+    "Newer project",
+    "MerxyLab Store",
+  ].map((project_title) => projectFixture({ project_title }));
+  const originalOrder = projects.map((project) => project.project_title);
+
+  const ordered = api.orderProjects(projects).map((project) => project.project_title);
+
+  assert.deepEqual(ordered, [
+    "MerxyLab Store",
+    "MerxyLab Messenger Chatbot",
+    "MerxyLab - Online Learning Platform",
+    "Student Management System",
+    "Sales Management System",
+    "Newer project",
+    "Older project",
+  ]);
+  assert.deepEqual(projects.map((project) => project.project_title), originalOrder);
+});
 
 test("normalization validates text, images, and proof URLs without mutation", () => {
   const technologies = [" Node.js ", 42, "Express.js"];
@@ -277,7 +303,7 @@ test("normalization validates text, images, and proof URLs without mutation", ()
   assert.equal(api.normalizeProject(null).image_placeholder, true);
 });
 
-test("catalog renders four featured cases and a ten-row ledger", () => {
+test("catalog renders five featured cases and a nine-row ledger", () => {
   const projects = Array.from({ length: 14 }, (_, index) => projectFixture({
     project_title: `Project ${index + 1}`,
     live_url: index === 13 ? "https://store.merxylab.com/" : "",
@@ -287,8 +313,8 @@ test("catalog renders four featured cases and a ten-row ledger", () => {
 
   api.displayProjects(projects);
 
-  assert.equal(document.getElementById("featured-projects").children.length, 4);
-  assert.equal(document.getElementById("project-ledger").children.length, 10);
+  assert.equal(document.getElementById("featured-projects").children.length, 5);
+  assert.equal(document.getElementById("project-ledger").children.length, 9);
   assert.equal(document.getElementById("projects-count").textContent, "14 projects");
   assert.equal(document.getElementById("projects-empty").hidden, true);
   assert.deepEqual(projects.map((project) => project.project_title), originalOrder);

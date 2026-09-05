@@ -60,7 +60,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--secondary-color);
+    background: #47f58b;
     flex-shrink: 0;
 }
 
@@ -72,10 +72,10 @@
 
 @keyframes availability-pulse {
     0%, 100% {
-        box-shadow: 0 0 4px rgba(var(--accent-rgb), 0.3);
+        box-shadow: 0 0 5px rgba(71, 245, 139, 0.45);
     }
     50% {
-        box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.8);
+        box-shadow: 0 0 14px rgba(71, 245, 139, 0.9);
     }
 }
 

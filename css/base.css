@@ -11,15 +11,15 @@
 :root {
     color-scheme: dark;
     --primary-color: #1b1c26;
-    --secondary-color: #91a4c4;
-    --secondary-dark: #7386a8;
+    --secondary-color: #a3b5d3;
+    --secondary-dark: #8498bd;
     --text-color: #d8d6db;
     --surface-color: #33374a;
     --surface-deep-color: #262836;
     --muted-color: #596479;
     --background-rgb: 27, 28, 38;
-    --accent-rgb: 145, 164, 196;
-    --accent-deep-rgb: 115, 134, 168;
+    --accent-rgb: 163, 181, 211;
+    --accent-deep-rgb: 132, 152, 189;
     --text-rgb: 216, 214, 219;
     --surface-rgb: 51, 55, 74;
     --surface-deep-rgb: 38, 40, 54;
