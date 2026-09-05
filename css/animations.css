@@ -183,7 +183,8 @@ body.loaded {
     transform: translateZ(0);
 }
 
-.project-card,
+.project-case,
+.project-row,
 .experience-item,
 .skill-card,
 .certificate-item,

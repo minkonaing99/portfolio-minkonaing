@@ -41,7 +41,7 @@
 
 .nav-logo:hover .nav-logo-img {
     transform: rotate(360deg);
-    filter: brightness(0) saturate(100%) invert(78%) sepia(23%) saturate(616%) hue-rotate(331deg) brightness(101%) contrast(82%);
+    filter: brightness(0) saturate(100%) invert(67%) sepia(13%) saturate(911%) hue-rotate(181deg) brightness(93%) contrast(87%);
 }
 
 .nav-logo:hover {

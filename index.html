@@ -42,7 +42,7 @@
 
     <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#1b1c26">
-    <meta name="msapplication-TileColor" content="#e8af91">
+    <meta name="msapplication-TileColor" content="#91a4c4">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Min Ko Naing Portfolio">
@@ -75,6 +75,8 @@
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/experience.css">
     <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/project-ledger.css">
+    <link rel="stylesheet" href="css/project-modal.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/certificates.css">
@@ -412,13 +414,29 @@
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
         <div class="projects-container">
-            <div class="section-header">
-                <h2 class="section-title">Projects</h2>
-                <p class="section-subtitle">My recent work and achievements</p>
+            <div class="projects-intro">
+                <div>
+                    <p class="projects-eyebrow">Built with care. Shipped with purpose.</p>
+                    <h2 class="projects-title">Selected engineering work</h2>
+                    <p class="projects-summary">Products, systems, and automations built to solve real operational
+                        problems.</p>
+                </div>
+                <p class="projects-count" id="projects-count" aria-live="polite">Loading projects...</p>
             </div>
 
-            <div class="projects-grid" id="projects-grid">
-                <!-- Projects will be loaded here via JavaScript -->
+            <p class="projects-empty" id="projects-empty" hidden>Project catalog unavailable.</p>
+
+            <div class="featured-projects" id="featured-projects" aria-label="Featured projects">
+                <!-- Featured projects will be loaded here via JavaScript -->
+            </div>
+
+            <div class="project-ledger-heading">
+                <h3>More projects</h3>
+                <p>Open a row for implementation details and proof.</p>
+            </div>
+
+            <div class="project-ledger" id="project-ledger">
+                <!-- Remaining projects will be loaded here via JavaScript -->
             </div>
         </div>
 

@@ -18,6 +18,7 @@ async function loadProjectsData() {
     displayProjects(projectsData);
   } catch (error) {
     console.error("Error loading projects data:", error);
+    displayProjects([]);
   }
 }
 
@@ -87,152 +88,165 @@ function normalizeProject(project) {
 }
 
 function displayProjects(projects) {
-  const projectsGrid = document.getElementById("projects-grid");
-  if (!projectsGrid) return;
+  const featured = document.getElementById("featured-projects");
+  const ledger = document.getElementById("project-ledger");
+  const count = document.getElementById("projects-count");
+  const empty = document.getElementById("projects-empty");
+  if (!featured || !ledger || !count || !empty) return;
 
-  projectsGrid.replaceChildren();
-  const descendingProjects = [...projects].reverse();
-  descendingProjects.forEach((project, index) => {
-    const projectCard = createProjectCard(project);
-    projectsGrid.appendChild(projectCard);
-    setTimeout(() => projectCard.classList.add("animate-in"), index * 200);
-  });
-
+  const orderedProjects = [...projects].reverse();
+  featured.replaceChildren(...orderedProjects.slice(0, 4).map(createFeaturedCase));
+  ledger.replaceChildren(...orderedProjects.slice(4).map(createProjectRow));
+  count.textContent = `${orderedProjects.length} projects`;
+  empty.hidden = orderedProjects.length > 0;
+  document.querySelector(".project-ledger-heading")?.toggleAttribute("hidden", orderedProjects.length <= 4);
   enhanceProjectImageLazyLoading();
+  revealProjectCatalog();
 }
 
-function createProjectCard(project) {
-  const projectCard = document.createElement("div");
-  projectCard.className = "project-card";
-  projectCard.append(createProjectImage(project), createProjectContent(project));
-  return projectCard;
+function createFeaturedCase(project, index) {
+  const article = document.createElement("article");
+  const content = document.createElement("div");
+  const label = document.createElement("p");
+  const title = document.createElement("h3");
+  const description = document.createElement("p");
+  const layouts = ["lead", "wide", "compact", "band"];
+
+  article.className = `project-case project-case-${layouts[index] || "wide"} catalog-reveal`;
+  content.className = "project-case-content";
+  label.className = "project-case-label";
+  title.className = "project-case-title";
+  description.className = "project-case-description";
+  label.textContent = index === 0 ? "Featured build" : `Selected work 0${index + 1}`;
+  title.textContent = project.project_title;
+  description.textContent = project.description;
+  content.append(label, title, description, createTechSummary(project.technologies), createProjectActions(project));
+  article.append(createProjectMedia(project), content);
+  return article;
 }
 
-function createProjectImage(project) {
-  const imageContainer = document.createElement("div");
-  imageContainer.className = "project-image";
+function createProjectRow(project, index) {
+  const details = document.createElement("details");
+  const summary = document.createElement("summary");
+  const identity = document.createElement("span");
+  const number = document.createElement("span");
+  const title = document.createElement("span");
+  const description = document.createElement("span");
+  const proof = createProofList(project);
+  const toggle = document.createElement("span");
+  const panel = document.createElement("div");
+  const panelInner = document.createElement("div");
+  const copy = document.createElement("div");
+
+  details.className = "project-row catalog-reveal";
+  summary.className = "project-row-summary";
+  identity.className = "project-row-identity";
+  number.className = "project-row-number";
+  title.className = "project-row-title";
+  description.className = "project-row-description";
+  toggle.className = "project-row-toggle";
+  panel.className = "project-row-panel";
+  panelInner.className = "project-row-panel-inner";
+  copy.className = "project-row-copy";
+  number.textContent = String(index + 5).padStart(2, "0");
+  title.textContent = project.project_title;
+  description.textContent = project.description;
+  toggle.setAttribute("aria-hidden", "true");
+  identity.append(number, title);
+  summary.append(identity, description, createTechSummary(project.technologies.slice(0, 3), "span"), proof, toggle);
+  copy.append(description.cloneNode(true), createTechSummary(project.technologies), createProjectActions(project));
+  panelInner.append(createProjectMedia(project), copy);
+  panel.appendChild(panelInner);
+  details.append(summary, panel);
+  return details;
+}
+
+function createProjectMedia(project) {
+  const media = document.createElement("div");
+  media.className = "project-media";
 
   if (project.image_placeholder) {
     const placeholder = document.createElement("div");
     const label = document.createElement("span");
-    placeholder.className = "project-image-placeholder";
+    placeholder.className = "project-media-placeholder";
     placeholder.setAttribute("role", "img");
     placeholder.setAttribute("aria-label", project.alt);
-    label.textContent = "Image coming soon";
+    label.textContent = "Preview in progress";
     placeholder.appendChild(label);
-    imageContainer.appendChild(placeholder);
+    media.appendChild(placeholder);
   } else {
     const image = document.createElement("img");
     image.src = project.photo_dir;
     image.alt = project.alt;
     image.loading = "lazy";
-    imageContainer.appendChild(image);
+    media.appendChild(image);
   }
 
-  imageContainer.appendChild(createProjectOverlay(project));
-  return imageContainer;
+  return media;
 }
 
-function createProjectOverlay(project) {
-  const overlay = document.createElement("div");
-  const buttons = document.createElement("div");
-  overlay.className = "project-image-overlay";
-  buttons.className = "project-overlay-buttons";
+function createProjectActions(project) {
+  const actions = document.createElement("div");
+  actions.className = "project-actions";
 
   if (project.showcase.length > 0) {
-    const viewButton = createOverlayButton("view", project.project_title);
-    viewButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      activeModalTrigger = viewButton;
-      viewProject(project.project_title);
+    const gallery = createAction("button", "View gallery", "fas fa-images");
+    gallery.addEventListener("click", () => {
+      activeModalTrigger = gallery;
+      showProjectModal(project);
     });
-    buttons.appendChild(viewButton);
+    actions.appendChild(gallery);
   }
 
   if (project.live_url) {
-    buttons.appendChild(createOverlayButton("live", project.project_title, project.live_url));
+    actions.appendChild(createAction("link", "Open live site", "fas fa-arrow-up-right-from-square", project.live_url));
   }
 
   if (project.github_repo) {
-    const codeButton = createOverlayButton("code", project.project_title);
-    codeButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      viewCode(project.project_title, project.github_repo);
-    });
-    buttons.appendChild(codeButton);
+    actions.appendChild(createAction("link", "View source", "fab fa-github", project.github_repo));
   }
 
-  overlay.appendChild(buttons);
-  return overlay;
+  return actions;
 }
 
-function createOverlayButton(type, projectTitle, url = "") {
-  const actions = {
-    view: { className: "view-project-btn", icon: "fas fa-eye", label: "View" },
-    live: { className: "live-project-btn", icon: "fas fa-external-link-alt", label: "Live" },
-    code: { className: "view-code-btn", icon: "fas fa-code", label: "Code" },
-  };
-  const action = actions[type] || actions.view;
-  const button = document.createElement("a");
+function createAction(type, labelText, iconClass, url = "") {
+  const control = document.createElement(type === "button" ? "button" : "a");
   const icon = document.createElement("i");
   const label = document.createElement("span");
-  button.href = type === "live" && isAllowedLiveUrl(url) ? url : "#";
-  button.className = `project-overlay-btn ${action.className}`;
-  button.dataset.project = projectTitle;
-  icon.className = action.icon;
+  control.className = "project-action";
+  icon.className = iconClass;
   icon.setAttribute("aria-hidden", "true");
-  label.textContent = action.label;
+  label.textContent = labelText;
 
-  if (type === "live") {
-    button.target = "_blank";
-    button.rel = "noopener noreferrer";
-    button.setAttribute("aria-label", `External link: ${projectTitle} (opens in a new tab)`);
+  if (type === "button") {
+    control.type = "button";
+  } else {
+    control.href = url;
+    control.target = "_blank";
+    control.rel = "noopener noreferrer";
+    control.setAttribute("aria-label", `${labelText} (opens in a new tab)`);
   }
 
-  button.append(icon, label);
-  return button;
+  control.append(icon, label);
+  return control;
 }
 
-function createProjectContent(project) {
-  const content = document.createElement("div");
-  const title = document.createElement("h3");
-  const description = document.createElement("p");
-  const technologies = document.createElement("div");
-  content.className = "project-content";
-  title.className = "project-title";
-  description.className = "project-description";
-  technologies.className = "project-technologies";
-  title.textContent = project.project_title;
-  description.textContent = project.description;
-
-  project.technologies.forEach((technology) => {
-    const tag = document.createElement("span");
-    tag.className = "technology-tag";
-    tag.textContent = technology;
-    technologies.appendChild(tag);
-  });
-
-  content.append(title, description, technologies);
-  return content;
+function createTechSummary(technologies, element = "p") {
+  const summary = document.createElement(element);
+  summary.className = "project-tech";
+  summary.textContent = technologies.join(" / ") || "Technical details available on request";
+  return summary;
 }
 
-function viewProject(projectTitle) {
-  const project = projectsData.find((item) => item.project_title === projectTitle);
-  if (project && project.showcase.length > 0) {
-    showProjectModal(project);
-    return;
-  }
-  showNotification(`Showcase images coming soon for ${projectTitle}`, "var(--secondary-color)");
-}
-
-function viewCode(projectTitle, githubRepo) {
-  if (!isAllowedGitHubUrl(githubRepo)) {
-    showNotification(`GitHub repository coming soon for ${projectTitle}`, "var(--secondary-color)");
-    return;
-  }
-
-  window.open(githubRepo, "_blank", "noopener,noreferrer");
-  showNotification(`Opening ${projectTitle} repository...`, "var(--secondary-color)");
+function createProofList(project) {
+  const proof = document.createElement("span");
+  const labels = [];
+  if (project.showcase.length > 0) labels.push("Gallery");
+  if (project.live_url) labels.push("Live");
+  if (project.github_repo) labels.push("Source");
+  proof.className = "project-row-proof";
+  proof.textContent = labels.join(" + ") || "Overview";
+  return proof;
 }
 
 function showProjectModal(project) {
@@ -333,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function enhanceProjectImageLazyLoading() {
-  const projectImages = document.querySelectorAll('.project-image img[loading="lazy"]');
+  const projectImages = document.querySelectorAll('.project-media img[loading="lazy"]');
   if (!("IntersectionObserver" in window)) {
     projectImages.forEach((image) => image.classList.add("loaded"));
     return;
@@ -347,4 +361,22 @@ function enhanceProjectImageLazyLoading() {
     });
   }, { rootMargin: "100px 0px", threshold: 0.1 });
   projectImages.forEach((image) => observer.observe(image));
+}
+
+function revealProjectCatalog() {
+  const items = [...document.querySelectorAll(".catalog-reveal")];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    items.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: "80px 0px", threshold: 0.08 });
+  items.forEach((item) => observer.observe(item));
 }

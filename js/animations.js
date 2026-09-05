@@ -1,6 +1,5 @@
 function initAllScrollAnimations() {
   const animateElements = document.querySelectorAll(`
-    .project-card,
     .experience-item,
     .skill-card,
     .certificate-item,
@@ -21,7 +20,6 @@ function initAllScrollAnimations() {
   animateElements.forEach((el) => el.classList.add("scroll-animate"));
 
   const gridItems = document.querySelectorAll(`
-    .projects-grid .project-card,
     .skills-grid .skill-card,
     .contact-platforms .platform-card,
     .about-details .detail-item
