@@ -25,19 +25,22 @@
     place-items: center;
     gap: 0.4rem;
     color: var(--text-color);
-    border: 1px solid rgba(var(--accent-rgb), 0.2);
-    border-radius: 16px;
-    background: rgba(var(--surface-deep-rgb), 0.68);
-    box-shadow: inset 0 1px 0 rgba(var(--text-rgb), 0.06);
+    border: 0;
+    border-radius: 20px;
+    background: rgba(var(--text-rgb), 0.05);
+    box-shadow: none;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     cursor: pointer;
     appearance: none;
-    transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    transition: transform 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
 }
 
 .certificate-provider-button:hover {
-    border-color: rgba(var(--accent-rgb), 0.5);
-    background: rgba(var(--accent-rgb), 0.1);
-    box-shadow: inset 0 1px 0 rgba(var(--text-rgb), 0.1), 0 12px 30px rgba(var(--shadow-rgb), 0.14);
+    transform: scale(1.01);
+    background: rgba(var(--text-rgb), 0.07);
+    box-shadow: 0 15px 30px rgba(var(--shadow-rgb), 0.2);
 }
 
 .certificate-provider-button:focus-visible {
@@ -85,6 +88,16 @@
     color: rgba(var(--text-rgb), 0.58);
     font-size: 0.72rem;
     font-weight: 600;
+}
+
+.certificate-provider-count-planned {
+    color: var(--secondary-color);
+}
+
+.certificate-provider-button .certificate-provider-tryhackme,
+.certificate-dialog-header > .certificate-provider-icon.certificate-provider-tryhackme {
+    background: oklch(0.94 0.012 250);
+    border-color: oklch(0.82 0.025 250 / 0.7);
 }
 
 .certificate-dialog {
@@ -260,6 +273,18 @@ body:has(.certificate-dialog[open]) {
     color: rgba(var(--accent-rgb), 0.7);
 }
 
+.certificate-item-status-planned {
+    margin-left: 0.55rem;
+    padding: 0.15rem 0.45rem;
+    color: var(--secondary-color);
+    border: 1px solid rgba(var(--accent-rgb), 0.34);
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
 @keyframes certificate-dialog-enter {
     from {
         opacity: 0;
@@ -286,6 +311,14 @@ body:has(.certificate-dialog[open]) {
     .certificate-dialog[open] .certificate-dialog-panel,
     .certificate-dialog[open]::backdrop {
         animation: none;
+    }
+
+    .certificate-provider-button {
+        transition: none;
+    }
+
+    .certificate-provider-button:hover {
+        transform: none;
     }
 }
 

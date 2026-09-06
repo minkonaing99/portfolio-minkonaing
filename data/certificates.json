@@ -61,5 +61,40 @@
         "year": "2024",
         "provider": "google",
         "url": "https://coursera.org/verify/GN35R4D6K4WJ"
+    },
+    {
+        "certificate": "Cyber Security 101 Certificate of Completion",
+        "issurer": "TryHackMe",
+        "provider": "tryhackme",
+        "status": "planned",
+        "url": ""
+    },
+    {
+        "certificate": "Certified Information Systems Security Professional (CISSP)",
+        "issurer": "ISC2",
+        "provider": "isc2",
+        "status": "planned",
+        "url": ""
+    },
+    {
+        "certificate": "CompTIA Security+",
+        "issurer": "CompTIA",
+        "provider": "comptia",
+        "status": "planned",
+        "url": ""
+    },
+    {
+        "certificate": "AWS Certified Cloud Practitioner",
+        "issurer": "AWS Training and Certification",
+        "provider": "aws",
+        "status": "planned",
+        "url": ""
+    },
+    {
+        "certificate": "AWS Certified Solutions Architect - Associate",
+        "issurer": "AWS Training and Certification",
+        "provider": "aws",
+        "status": "planned",
+        "url": ""
     }
 ]

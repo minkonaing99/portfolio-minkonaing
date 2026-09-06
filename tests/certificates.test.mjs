@@ -256,7 +256,18 @@ test("supplies safe text defaults for malformed certificate records", () => {
   assert.equal(normalized.title, "Professional certificate");
   assert.equal(normalized.issuer, "Credential provider");
   assert.equal(normalized.year, "");
+  assert.equal(normalized.status, "earned");
   assert.equal(api.getCertificateProvider(null).key, "credential");
+});
+
+test("accepts planned status without changing source certificate data", () => {
+  const sourceCertificate = certificate({ status: "planned", year: "" });
+  const planned = api.normalizeCertificate(sourceCertificate);
+  const invalid = api.normalizeCertificate(certificate({ status: "unverified" }));
+
+  assert.equal(planned.status, "planned");
+  assert.equal(invalid.status, "earned");
+  assert.equal(sourceCertificate.status, "planned");
 });
 
 test("accepts only trusted HTTPS certificate verification URLs", () => {
@@ -276,9 +287,10 @@ test("groups certificates by credential brand without source mutation", () => {
   const google = groups.find((group) => group.provider.key === "google");
   const coursera = groups.find((group) => group.provider.key === "coursera");
 
-  assert.equal(groups.length, 6);
+  assert.equal(groups.length, 10);
   assert.equal(meta.certificates.length, 3);
   assert.equal(google.certificates.length, 2);
+  assert.equal(groups.find((group) => group.provider.key === "aws").certificates.length, 2);
   assert.deepEqual(Array.from(coursera.certificates, (item) => item.title), ["Python for Everybody"]);
   assert.equal(Object.isFrozen(groups), true);
   assert.equal(Object.isFrozen(meta.certificates), true);
@@ -321,9 +333,9 @@ test("positions provider dialog below trigger and clamps viewport edges", () => 
 test("renders one static button per provider", () => {
   api.displayCertificates(certificateData);
 
-  assert.equal(grid.children.length, 6);
-  assert.equal(grid.querySelectorAll(".certificate-provider-button").length, 6);
-  assert.equal(grid.querySelectorAll(".certificate-provider-icon").length, 6);
+  assert.equal(grid.children.length, 10);
+  assert.equal(grid.querySelectorAll(".certificate-provider-button").length, 10);
+  assert.equal(grid.querySelectorAll(".certificate-provider-icon").length, 10);
   assert.equal(grid.querySelectorAll("img")[0].getAttribute("src"), "assets/svg/certificates/meta.svg");
   assert.equal(grid.children[0].getAttribute("aria-label"), "View 3 Meta certificates");
   assert.equal(grid.children[0].getAttribute("aria-haspopup"), "dialog");
@@ -419,6 +431,39 @@ test("renders British Council and Codelab brand art", () => {
   assert.equal(grid.querySelectorAll("i").length, 0);
 });
 
+test("labels planned providers and popup items without claiming completion", () => {
+  api.displayCertificates([
+    certificate({
+      certificate: "AWS Certified Cloud Practitioner",
+      issurer: "AWS Training and Certification",
+      provider: "aws",
+      status: "planned",
+      year: "",
+      url: "",
+    }),
+  ]);
+
+  assert.equal(grid.querySelector(".certificate-provider-count").textContent, "1 planned");
+  assert.equal(grid.children[0].getAttribute("aria-label"), "View 1 planned AWS certificate");
+  grid.children[0].dispatch("click");
+  assert.equal(dialog.querySelector(".certificate-item-status-planned").textContent, "Planned");
+  assert.equal(dialog.querySelector(".certificate-item-year"), null);
+  api.closeCertificateDialog();
+});
+
+test("shows earned and planned counts for mixed provider groups", () => {
+  api.displayCertificates([
+    certificate({ provider: "aws", year: "2026", url: "" }),
+    certificate({ provider: "aws", status: "planned", year: "", url: "" }),
+  ]);
+
+  assert.equal(grid.querySelector(".certificate-provider-count").textContent, "1 earned / 1 planned");
+  assert.equal(
+    grid.children[0].getAttribute("aria-label"),
+    "View 1 earned and 1 planned AWS certificates"
+  );
+});
+
 test("uses local provider marks with their official colors", async () => {
   const expectedColors = Object.freeze({
     "meta.svg": ["#0467DF"],
@@ -426,6 +471,10 @@ test("uses local provider marks with their official colors", async () => {
     "mikrotik.svg": ["#C8C8C7"],
     "google.svg": ["#4285F4", "#34A853", "#FBBC05", "#EA4335"],
     "british-council.svg": ["#00A7DB"],
+    "tryhackme.svg": ["#212C42"],
+    "isc2.svg": ["#468145"],
+    "comptia.svg": ["#C8202F"],
+    "aws.svg": ["#FF9900"],
   });
 
   for (const [file, colors] of Object.entries(expectedColors)) {
@@ -514,6 +563,14 @@ test("certificate styles use static grid and bounded modal", async () => {
 
   assert.match(css, /\.certificate-provider-grid/);
   assert.match(css, /grid-template-columns: repeat\(auto-fit/);
+  assert.match(
+    css,
+    /\.certificate-provider-button\s*\{[^}]*border: 0;[^}]*border-radius: 20px;[^}]*backdrop-filter: blur\(10px\);/s
+  );
+  assert.match(
+    css,
+    /\.certificate-provider-button:hover\s*\{[^}]*transform: scale\(1\.01\);[^}]*box-shadow: 0 15px 30px/s
+  );
   assert.match(css, /\.certificate-dialog::backdrop/);
   assert.match(css, /max-height: min\(80dvh, 720px\)/);
   assert.match(css, /position: fixed/);
@@ -525,9 +582,15 @@ test("certificate styles use static grid and bounded modal", async () => {
   assert.match(css, /rgba\(var\(--background-rgb\), 0\.42\)/);
   assert.match(css, /@keyframes certificate-dialog-enter/);
   assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(
+    css,
+    /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.certificate-provider-button\s*\{[^}]*transition: none;/
+  );
+  assert.match(css, /\.certificate-item-status-planned/);
   assert.doesNotMatch(css, /\.certificate-verify-link/);
   assert.doesNotMatch(css, /will-change: transform/);
   assert.match(html, /<dialog class="certificate-dialog" id="certificate-dialog"/);
+  assert.match(html, /Earned credentials and planned certifications/);
   assert.doesNotMatch(html, /id="certificate-detail"/);
   assert.doesNotMatch(script, /requestAnimationFrame|startCertificateCarousel|createPauseController/);
 });

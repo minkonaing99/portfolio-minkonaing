@@ -23,6 +23,30 @@ const CERTIFICATE_PROVIDERS = Object.freeze({
     iconType: "image",
     icon: "assets/svg/certificates/google.svg",
   }),
+  tryhackme: Object.freeze({
+    key: "tryhackme",
+    label: "TryHackMe",
+    iconType: "image",
+    icon: "assets/svg/certificates/tryhackme.svg",
+  }),
+  isc2: Object.freeze({
+    key: "isc2",
+    label: "ISC2",
+    iconType: "image",
+    icon: "assets/svg/certificates/isc2.svg",
+  }),
+  comptia: Object.freeze({
+    key: "comptia",
+    label: "CompTIA",
+    iconType: "image",
+    icon: "assets/svg/certificates/comptia.svg",
+  }),
+  aws: Object.freeze({
+    key: "aws",
+    label: "AWS",
+    iconType: "image",
+    icon: "assets/svg/certificates/aws.svg",
+  }),
   codelab: Object.freeze({
     key: "codelab",
     label: "Codelab",
@@ -84,6 +108,10 @@ function cleanCertificateText(value, fallback = "") {
   return value.trim().slice(0, 160) || fallback;
 }
 
+function normalizeCertificateStatus(value) {
+  return value === "planned" ? "planned" : "earned";
+}
+
 function getSafeCertificateUrl(value) {
   if (typeof value !== "string") return "";
   try {
@@ -103,6 +131,7 @@ function normalizeCertificate(certificate) {
     title: cleanCertificateText(source.certificate, "Professional certificate"),
     issuer: cleanCertificateText(source.issurer, "Credential provider"),
     year: cleanCertificateText(source.year, ""),
+    status: normalizeCertificateStatus(source.status),
     provider: getCertificateProvider(source.provider),
     verifyUrl: getSafeCertificateUrl(source.url),
   });
@@ -120,6 +149,27 @@ function groupCertificates(certificates) {
     });
   });
   return Object.freeze(groups);
+}
+
+function getCertificateStatusSummary(certificates) {
+  const items = Array.isArray(certificates) ? certificates : [];
+  const planned = items.filter((certificate) => certificate.status === "planned").length;
+  const earned = items.length - planned;
+
+  if (planned === 0) {
+    const noun = items.length === 1 ? "certificate" : "certificates";
+    return Object.freeze({ compact: `${items.length} ${noun}`, dialog: `${items.length} ${noun}`, aria: `${items.length}`, planned });
+  }
+  if (earned === 0) {
+    const noun = planned === 1 ? "certification" : "certifications";
+    return Object.freeze({ compact: `${planned} planned`, dialog: `${planned} planned ${noun}`, aria: `${planned} planned`, planned });
+  }
+  return Object.freeze({
+    compact: `${earned} earned / ${planned} planned`,
+    dialog: `${earned} earned / ${planned} planned`,
+    aria: `${earned} earned and ${planned} planned`,
+    planned,
+  });
 }
 
 function createCertificateIcon(provider) {
@@ -152,17 +202,22 @@ function createCertificateListItem(certificate) {
   const meta = document.createElement("p");
   const issuer = document.createElement("span");
   const year = document.createElement("span");
+  const status = document.createElement("span");
 
-  item.className = "certificate-detail-item";
+  item.className = `certificate-detail-item certificate-detail-item-${certificate.status}`;
   copy.className = "certificate-item-copy";
   title.className = "certificate-name";
   meta.className = "certificate-item-meta";
   issuer.className = "certificate-item-issuer";
   year.className = "certificate-item-year";
+  status.className = `certificate-item-status certificate-item-status-${certificate.status}`;
   title.textContent = certificate.title;
   issuer.textContent = certificate.issuer;
   year.textContent = certificate.year;
-  meta.append(issuer, year);
+  status.textContent = certificate.status === "planned" ? "Planned" : "";
+  meta.appendChild(issuer);
+  if (certificate.year) meta.appendChild(year);
+  if (certificate.status === "planned") meta.appendChild(status);
   copy.append(title, meta);
   item.appendChild(copy);
 
@@ -197,7 +252,7 @@ function renderProviderDialog(group) {
   kicker.textContent = "Credential collection";
   title.textContent = group.provider.label;
   const total = group.certificates.length;
-  count.textContent = `${total} ${total === 1 ? "certificate" : "certificates"}`;
+  count.textContent = getCertificateStatusSummary(group.certificates).dialog;
 
   copy.append(kicker, title, count);
   header.append(createCertificateIcon(group.provider), copy, close);
@@ -286,14 +341,18 @@ function createProviderButton(group, index) {
   const summary = document.createElement("span");
   const count = group.certificates.length;
   const noun = count === 1 ? "certificate" : "certificates";
+  const statusSummary = getCertificateStatusSummary(group.certificates);
   button.className = "certificate-provider-button";
   label.className = "certificate-provider-name";
-  summary.className = "certificate-provider-count";
+  summary.className = `certificate-provider-count${statusSummary.planned ? " certificate-provider-count-planned" : ""}`;
   button.setAttribute("type", "button");
-  button.setAttribute("aria-label", `View ${count} ${group.provider.label} ${noun}`);
+  button.setAttribute(
+    "aria-label",
+    `View ${statusSummary.aria} ${group.provider.label} ${noun}`
+  );
   button.setAttribute("aria-haspopup", "dialog");
   label.textContent = group.provider.label;
-  summary.textContent = `${count} ${noun}`;
+  summary.textContent = statusSummary.compact;
   button.append(createCertificateIcon(group.provider), label, summary);
   button.addEventListener("click", () => openCertificateDialog(index, button));
   return button;
