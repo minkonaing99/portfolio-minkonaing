@@ -249,11 +249,12 @@
 
     .about-image {
         order: -1;
+        width: min(100%, 28rem);
+        justify-self: center;
     }
 
     .profile-img {
-        height: 300px;
-        object-position: top center;
+        height: auto;
     }
 
     .about-name {
@@ -278,11 +279,6 @@
 
     .section-subtitle {
         font-size: 1rem;
-    }
-
-    .profile-img {
-        height: 250px;
-        object-position: top center;
     }
 
     .about-name {
